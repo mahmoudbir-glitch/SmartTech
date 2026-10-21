@@ -3208,3 +3208,70 @@ footer .hdr__mark { color: var(--brand); }
 @media (hover: hover) and (pointer: fine) {
   footer a:hover { color: var(--brand-ink); }
 }
+
+/* --- 20b. Wasl look, part 2: circular departments, ink pill buttons ------- */
+
+/* One scrolling row of circles, label underneath — the count stays in the
+   markup for screen readers but is no longer drawn. */
+.depts {
+  display: flex;
+  gap: var(--s-3);
+  overflow-x: auto;
+  scroll-snap-type: x proximity;
+  scrollbar-width: none;
+  padding-block: var(--s-2);
+  min-inline-size: 0;
+  max-inline-size: 100%;
+}
+.depts::-webkit-scrollbar { display: none; }
+.depts__tile,
+.depts__tile[aria-current="page"],
+.depts__tile.is-on {
+  position: relative;
+  flex: none;
+  inline-size: 88px;
+  block-size: auto;
+  min-block-size: 0;
+  padding: 0;
+  border: 0;
+  border-radius: 0;
+  background: transparent;
+  scroll-snap-align: start;
+}
+.depts__icon {
+  box-sizing: border-box;
+  inline-size: 72px;
+  block-size: 72px;
+  padding: 22px;
+  margin-block-end: var(--s-2);
+  border-radius: 50%;
+  background: var(--n-100);
+  color: var(--n-950);
+}
+.depts__tile.is-on .depts__icon,
+.depts__tile[aria-current="page"] .depts__icon { background: var(--n-950); color: var(--n-0); }
+.depts__label { display: block; font-size: var(--t-200); line-height: 20px; }
+.depts .depts__count {
+  position: absolute;
+  inline-size: 1px;
+  block-size: 1px;
+  overflow: hidden;
+  clip-path: inset(50%);
+  margin: 0;
+}
+@media (hover: hover) and (pointer: fine) {
+  .depts__tile:hover { background: transparent; }
+  .depts__tile:hover .depts__icon { background: var(--n-200); }
+}
+@media (min-width: 768px) {
+  .depts { justify-content: center; gap: var(--s-5); }
+  .depts__tile { block-size: auto; inline-size: 104px; }
+  .depts__icon { inline-size: 88px; block-size: 88px; padding: 28px; }
+}
+
+/* Primary actions: ink pills, as on Wasl. WhatsApp keeps its own green. */
+.btn--primary { background: var(--n-950); border-radius: var(--r-pill, 999px); }
+@media (hover: hover) and (pointer: fine) {
+  .btn--primary:hover { background: var(--n-800); }
+}
+.btn--primary:active { background: var(--n-900); }
