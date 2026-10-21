@@ -78,6 +78,7 @@
       railOffers: "عروض",
       railNew: "وصل حديثاً",
       railAll: "عرض الكل",
+      promoShop: "تسوّق الآن",
 
       /* ------------------------------ بطاقة المنتج · the product card */
       cardOff: "خصم {n}",
@@ -330,6 +331,7 @@
       railOffers: "Offers",
       railNew: "Just arrived",
       railAll: "See all",
+      promoShop: "SHOP NOW",
 
       /* ------------------------------ بطاقة المنتج · the product card */
       cardOff: "{n} off",
@@ -582,6 +584,7 @@
       railOffers: "Fırsatlar",
       railNew: "Yeni gelenler",
       railAll: "Tümünü gör",
+      promoShop: "ALIŞVERİŞE BAŞLA",
 
       /* ------------------------------ بطاقة المنتج · the product card */
       cardOff: "{n} indirim",

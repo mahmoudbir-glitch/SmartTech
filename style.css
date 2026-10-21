@@ -3275,3 +3275,152 @@ footer .hdr__mark { color: var(--brand); }
   .btn--primary:hover { background: var(--n-800); }
 }
 .btn--primary:active { background: var(--n-900); }
+
+/* ---------------------------------------------------------------------------
+ * 20c. beirutco look: promo bar, dark header, bare cards with an outlined
+ * ADD TO CART, left-aligned section titles over a rule, black footer.
+ * Colour/shape only, plus the 52px the new button adds to a card, which the
+ * reserved heights below absorb so nothing moves after paint.
+ * --------------------------------------------------------------------------- */
+
+.promo {
+  margin: 0;
+  padding-block: var(--s-3);
+  background: #000;
+  color: #fff;
+  text-align: center;
+  font-size: var(--t-200);
+  font-weight: var(--w-bold);
+}
+.promo a { color: #fff; text-decoration: underline; }
+
+/* header: charcoal bar, white marks */
+.hdr { background: #222; border-block-end: 0; color: #fff; }
+.hdr a, .hdr__act, .hdr__word, .hdr__mark { color: #fff; }
+.hdr__lang select { background: #333; color: #fff; border-color: #555; }
+.hdr__badge { background: #fff; color: #000; }
+@media (min-width: 768px) {
+  .hdr__search { background: #fff; }
+}
+
+/* section titles: bold grey title, View More on the far side, rule beneath */
+.rail__head {
+  flex-direction: row;
+  align-items: flex-end;
+  justify-content: space-between;
+  text-align: start;
+  border-block-end: 3px solid var(--n-200);
+  padding-block-end: 0;
+  margin-block-end: var(--s-5);
+}
+.rail__head h2 {
+  margin: 0;
+  padding-block-end: var(--s-2);
+  border-block-end: 3px solid var(--n-500);
+  margin-block-end: -3px;
+  color: var(--n-700);
+  font-size: var(--t-500, 1.5rem);
+  font-weight: var(--w-bold);
+  text-transform: uppercase;
+}
+.rail__more { color: var(--n-950); font-weight: var(--w-bold); text-decoration: none; padding-block-end: var(--s-2); }
+
+/* cards: white, centred, nothing around them */
+.pcard { text-align: center; }
+.pcard__photo { background: var(--n-0); }
+.pcard__brand {
+  color: var(--n-500);
+  text-transform: uppercase;
+  letter-spacing: .04em;
+}
+.pcard__price { justify-content: center; }
+.pcard__price b { font-size: var(--t-300, 1.125rem); }
+.pcard__off,
+.pcard__fav::before { }
+.pcard__off {
+  inline-size: 54px;
+  block-size: 54px;
+  display: grid;
+  place-items: center;
+  padding: 0;
+  border-radius: 50%;
+  background: #000;
+  color: #fff;
+  font-weight: var(--w-bold);
+  inset-block-start: 40%;
+  inset-inline-start: 50%;
+  transform: translateX(-50%);
+}
+[dir="rtl"] .pcard__off { transform: translateX(50%); }
+.pcard__fav::before { background: transparent; border: 2px solid var(--n-300); box-shadow: none; }
+.pcard__add {
+  display: block;
+  box-sizing: border-box;
+  inline-size: max-content;
+  max-inline-size: 100%;
+  min-block-size: 44px;
+  margin: var(--s-2) auto 0;
+  padding: 10px 20px;
+  border: 2px solid #000;
+  border-radius: 0;
+  background: transparent;
+  color: #000;
+  font: inherit;
+  font-size: var(--t-200);
+  font-weight: var(--w-bold);
+  text-align: center;
+  text-decoration: none;
+  text-transform: uppercase;
+  cursor: pointer;
+  touch-action: manipulation;
+}
+@media (hover: hover) and (pointer: fine) {
+  .pcard__add:hover { background: #000; color: #fff; }
+}
+.pcard__add:active { background: #000; color: #fff; }
+
+/* the 52px the button adds */
+.pcard { contain-intrinsic-size: auto 362px; }
+@media (min-width: 768px)  { .pcard { contain-intrinsic-size: auto 477px; } }
+@media (min-width: 1024px) { .pcard { contain-intrinsic-size: auto 562px; } }
+@media (min-width: 1280px) { .pcard { contain-intrinsic-size: auto 495px; } }
+@media (min-width: 1600px) { .pcard { contain-intrinsic-size: auto 433px; } }
+.rail__track { min-block-size: 379px; }
+@media (min-width: 768px)  { .rail__track { min-block-size: 491px; } }
+@media (min-width: 1280px) { .rail__track { min-block-size: 509px; } }
+@media (min-width: 1600px) { .rail__track { min-block-size: 492px; } }
+
+/* footer: black, light type, hairline-divided link lists */
+.ftr { background: #000; color: #fff; }
+.ftr a, .ftr h2, .ftr h3, .ftr__lockup, .ftr__bottom { color: #fff; }
+.ftr__bottom { border-color: #333; }
+.ftr nav a { border-block-end: 1px solid #333; padding-block: var(--s-3); }
+@media (hover: hover) and (pointer: fine) {
+  .ftr a:hover { color: var(--n-300); }
+}
+.ftr p, .ftr small, .ftr__col > span { color: var(--n-300); }
+.ftr .hdr__mark, .ftr .hdr__word { color: #fff; }
+
+/* 20d. fixes from the first look */
+.hdr__searchicon, .hdr .icon { color: #fff; }
+@media (max-width: 767px) {
+  .hdr__lang select { min-inline-size: 0; inline-size: 6.5em; padding-inline: var(--s-2); }
+}
+.pcard__off {
+  inline-size: 60px;
+  block-size: 60px;
+  font-size: 12px;
+  line-height: 1.15;
+  text-align: center;
+  inset-block-start: 96px;
+}
+@media (min-width: 768px) { .pcard__off { inset-block-start: 130px; } }
+.promo { inline-size: 100%; box-sizing: border-box; }
+.pcard__off,
+[dir="rtl"] .pcard__off {
+  inset-block-start: var(--s-2);
+  inset-inline-start: var(--s-2);
+  transform: none;
+  inline-size: 50px;
+  block-size: 50px;
+}

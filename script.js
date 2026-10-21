@@ -476,6 +476,12 @@
            card the same height in every state. */
         '<span class="pcard__note' + noteClass + '">' + note + "</span>" +
       "</a>" +
+      /* beirutco-style action: a single in-stock product adds straight to the
+         cart (cart.js handles [data-add-to-cart]); a colour group must be
+         chosen on its own page, so it links there instead. */
+      (p.inStock === false ? "" : ranged || colours
+        ? '<a class="pcard__add" href="/p/' + p.id + '">' + esc(t("addToCart")) + "</a>"
+        : '<button class="pcard__add" type="button" data-add-to-cart="' + p.id + '">' + esc(t("addToCart")) + "</button>") +
       /* A percentage off a range is not a fact, so a ranged group carries no chip. */
       (!ranged && p.discount && p.inStock !== false ? '<span class="pcard__off">' + t("cardOff", { n: SY.percent(p.discount) }) + "</span>" : "") +
       '<button class="pcard__fav" type="button" data-fav="' + p.id + '"' +
