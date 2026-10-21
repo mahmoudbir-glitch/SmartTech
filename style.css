@@ -3158,6 +3158,10 @@ body { background: var(--n-0); }
 .pcard__photo.is-missing { background: var(--n-100); }
 .pcard__photo img { mix-blend-mode: multiply; }
 .pcard__glyph { color: var(--n-300); }
+/* `multiply` makes the photo's white transparent, so the waiting glyph behind it
+   would show through the product. Hide it once a photo is in the box; it comes
+   back by itself if the photo 404s and core.js removes the <img>. */
+.pcard__photo:has(img) .pcard__glyph { visibility: hidden; }
 .pcard__brand,
 .pcard__name,
 .pcard__price,
