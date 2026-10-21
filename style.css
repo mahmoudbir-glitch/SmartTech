@@ -3081,3 +3081,126 @@ body:not([data-route="product"]) #productView { display: none; }
 }
 .depts__tile { block-size: 76px; }
 @media (min-width: 768px) { .depts__tile { block-size: 96px; } }
+
+/* ---------------------------------------------------------------------------
+ * 20. Wasl look (redesign-wasl)
+ *
+ * One block, last in the file, so the whole restyle can be read — or reverted —
+ * in one place. It changes colour, shape and alignment only: no box here moves
+ * a reserved height from sections 8, 18 or 19, so the layout-shift budget
+ * stands. The palette is unchanged: Wasl's cream, ink and amber are the
+ * existing paper, --n-950 and --brand.
+ * --------------------------------------------------------------------------- */
+
+body { background: var(--n-0); }
+
+/* Header: white, ink, hairline — instead of the dark slab. */
+.hdr {
+  background: var(--n-0);
+  color: var(--n-950);
+  border-block-end: var(--bd-hair);
+}
+.hdr a,
+.hdr button { color: var(--n-950); }
+.hdr__brand,
+.hdr__lockup,
+.hdr__mark { color: var(--brand); }
+.hdr__word { color: var(--n-950); }
+.hdr__searchicon,
+.hdr__search > button:first-child .icon { color: var(--n-950); }
+.hdr__field,
+.hdr__search input { color: var(--n-950); }
+.hdr__field::placeholder,
+.hdr__search input::placeholder { color: var(--n-500); }
+.hdr__search:focus-within { background: var(--n-100); }
+.hdr__actions select {
+  border-color: var(--n-300);
+  color: var(--n-950);
+}
+@media (min-width: 768px) {
+  .hdr__search { background: var(--n-100); border-radius: var(--r-pill); }
+}
+@media (hover: hover) and (pointer: fine) {
+  .hdr__actions > button:hover,
+  .hdr__actions > a:hover { background: var(--n-100); }
+}
+
+/* Section titles: centred and large, with the "see all" link underneath. */
+.rail__head {
+  flex-direction: column;
+  align-items: center;
+  gap: var(--s-1);
+  text-align: center;
+}
+.rail__head h2 { font-size: var(--t-600); line-height: var(--lh-600); }
+.rail__more {
+  color: var(--brand-ink);
+  text-decoration: underline;
+  text-underline-offset: 5px;
+}
+
+/* Product card: no frame. A warm plate, the name and the price underneath.
+   The supplier cut-outs sit on opaque white, so `multiply` lets the plate
+   colour through them instead of drawing a white rectangle around each. */
+.pcard {
+  background: transparent;
+  border: 0;
+  border-radius: 0;
+}
+@media (hover: hover) and (pointer: fine) {
+  .pcard:hover { border-color: transparent; }
+}
+.pcard__photo {
+  background: var(--n-100);
+  border-block-end: 0;
+  border-radius: 0;
+}
+.pcard__photo.is-missing { background: var(--n-100); }
+.pcard__photo img { mix-blend-mode: multiply; }
+.pcard__glyph { color: var(--n-300); }
+.pcard__brand,
+.pcard__name,
+.pcard__price,
+.pcard__note { padding-inline: 0; }
+.pcard__note.is-out,
+.pcard.is-out .pcard__note { margin-inline-start: 0; }
+.pcard__fav::before { border: 0; box-shadow: var(--sh-1); }
+.pcard__off {
+  padding: 3px 12px;
+  border-radius: var(--r-pill);
+}
+
+/* Bottom bar: grey at rest, ink for the current slot. WhatsApp keeps its green. */
+.bottombar { border-block-start: var(--bd-hair); }
+.bottombar__slot { color: var(--n-500); }
+.bottombar__slot.is-current { color: var(--n-950); }
+.bottombar__slot.is-current::after { background: var(--n-950); }
+.bottombar__slot--wa,
+.bottombar__slot.btn--wa { color: var(--wa-ink); }
+
+/* Footer: light, with a cream strip for the copyright line. */
+footer {
+  background: var(--n-0);
+  color: var(--n-700);
+  border-block-start: var(--bd-hair);
+}
+footer h2,
+footer h3 {
+  font-size: var(--t-300);
+  font-weight: var(--w-bold);
+  color: var(--n-950);
+}
+footer a { color: var(--n-700); }
+footer p,
+footer small { color: var(--n-600); }
+.ftr__lockup,
+footer .hdr__mark { color: var(--brand); }
+.ftr__lockup .hdr__word { color: var(--n-950); }
+.ftr__admin { color: var(--n-500) !important; }
+.ftr__bottom {
+  border-block-start: var(--bd-hair);
+  color: var(--n-600);
+}
+@media (hover: hover) and (pointer: fine) {
+  footer a:hover { color: var(--brand-ink); }
+}
