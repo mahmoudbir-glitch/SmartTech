@@ -26,7 +26,7 @@
   // Display order of the brands that have a tagline in i18n.js.
   const brands = ["Anker", "eufy", "soundcore", "Nebula", "Anker SOLIX", "PITAKA", "Kingston"];
 
-  const settings = { whatsapp: "963949951985", email: "info@syriatech.store" };
+  const settings = { whatsapp: "963982760670", email: "" };
 
   const products = [
     // power-bank

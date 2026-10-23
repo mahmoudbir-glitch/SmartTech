@@ -3,28 +3,28 @@
   color-scheme: light;
 
   --n-0:   #FFFFFF;
-  --n-25:  #FDFAF8;
-  --n-50:  #F8F5F2;
-  --n-100: #F0ECE8;
-  --n-200: #E4DFDA;
-  --n-300: #D1CBC6;
-  --n-400: #A9A39E;
-  --n-450: #968F8A;
-  --n-500: #77716B;
-  --n-600: #625C57;
-  --n-700: #47413D;
-  --n-800: #2D2824;
-  --n-900: #1A1613;
-  --n-950: #100D0A;
+  --n-25:  #FAFCFE;
+  --n-50:  #F3F7FB;
+  --n-100: #E9EFF6;
+  --n-200: #DCE4EE;
+  --n-300: #C6D1DE;
+  --n-400: #9FAEC0;
+  --n-450: #7D8DA3;
+  --n-500: #5E6F86;
+  --n-600: #4F6078;
+  --n-700: #34455C;
+  --n-800: #1F2E45;
+  --n-900: #121E31;
+  --n-950: #0B1626;
 
-  --brand-subtle: #FFF0E4;
-  --brand-soft:   #FDD7BD;
-  --brand-line:   #EEB793;
-  --brand:        #A45118;
-  --brand-hover:  #8F410E;
-  --brand-active: #79350F;
-  --brand-ink:    #893E0A;
-  --brand-tint:   #E08A4A;
+  --brand-subtle: #E8F1FD;
+  --brand-soft:   #CFE2FA;
+  --brand-line:   #9EC3F0;
+  --brand:        #1560C8;
+  --brand-hover:  #0F57BB;
+  --brand-active: #0B4296;
+  --brand-ink:    #0E4FAE;
+  --brand-tint:   #5BC8F5;
 
   --success:      #1B6738;  --success-bg: #E7F7EB;  --success-line: #B7DCC0;
   --warning:      #6D5900;  --warning-bg: #FCF4D8;  --warning-line: #EBCD9C;
@@ -81,11 +81,11 @@
   --bd-line: 1px solid var(--n-300);
   --bd-field: 1px solid var(--n-450);
 
-  --sh-1: 0 1px 2px rgba(16,13,10,.05), 0 8px 20px rgba(16,13,10,.05);
-  --sh-2: 0 2px 6px rgba(16,13,10,.06), 0 18px 40px rgba(16,13,10,.10);
-  --sh-3: 0 8px 20px rgba(16,13,10,.10), 0 40px 80px rgba(16,13,10,.18);
+  --sh-1: 0 1px 2px rgba(11,22,38,.05), 0 8px 20px rgba(11,22,38,.05);
+  --sh-2: 0 2px 6px rgba(11,22,38,.06), 0 18px 40px rgba(11,22,38,.10);
+  --sh-3: 0 8px 20px rgba(11,22,38,.10), 0 40px 80px rgba(11,22,38,.18);
 
-  --focus-ink:  #100D0A;
+  --focus-ink:  #0B1626;
   --focus-halo: #FFFFFF;
 
   --d-1: 120ms;
@@ -566,7 +566,7 @@ dialog.sheet {
   max-inline-size: none; max-block-size: none;
   display: flex; flex-direction: column;
 }
-dialog.sheet::backdrop { background: rgba(16, 13, 10, .55); }
+dialog.sheet::backdrop { background: rgba(11,22,38, .55); }
 dialog.sheet[open] { display: flex; }
 .sheet--full { inline-size: 100%; block-size: 100%; margin: 0; }
 .sheet--end { inline-size: min(640px, 100%); block-size: 100%; margin: 0; margin-inline-start: auto; }

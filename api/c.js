@@ -854,7 +854,7 @@ async function shell(win, o) {
   const join = base.indexOf("?") === -1 ? "?" : "&";
   const tags =
     '<meta property="og:type" content="' + o.ogType + '">' +
-    '<meta property="og:site_name" content="Syriatech">' +
+    '<meta property="og:site_name" content="SmartTech">' +
     '<meta property="og:url" content="' + esc(url) + '">' +
     '<meta property="og:title" content="' + esc(o.title) + '">' +
     '<meta property="og:description" content="' + esc(o.description) + '">' +

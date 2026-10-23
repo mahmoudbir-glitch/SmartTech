@@ -72,7 +72,7 @@ LANGS.slice(1).forEach(code => {
    somebody forgot. It is legitimate for a proper noun, and for a value with no
    letters in it at all — "{who} · {area} · {action}" is a layout, and
    an em dash meaning "nothing recorded" is an em dash in every language. */
-const SAME_ALLOWED = new Set(["brandName", "heroTagBrand", "footerRights"]);
+const SAME_ALLOWED = new Set(["brandName", "heroTagBrand", "footerRights", "navAnker", "navSoundcore"]);
 const hasLetters = v => /\p{L}/u.test(String(v).replace(/\{\w+\}/g, ""));
 LANGS.slice(1).forEach(code => {
   const copied = keys.ar.filter(k => !SAME_ALLOWED.has(k) && !k.startsWith("brandTagline.")

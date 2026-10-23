@@ -126,7 +126,7 @@ const CSS = `
 @font-face{font-family:"Cairo";font-style:normal;font-weight:400 800;font-display:swap;
   src:url("/assets/fonts/cairo-latin-ext.woff2") format("woff2");
   unicode-range:U+0100-02BA,U+02BD-02C5,U+02C7-02CC,U+02CE-02D7,U+02DD-02FF,U+0304,U+0308,U+0329,U+1D00-1DBF,U+1E00-1E9F,U+1EF2-1EFF,U+2020,U+20A0-20AB,U+20AD-20C0,U+2113,U+2C60-2C7F,U+A720-A7FF}
-:root{color-scheme:light;--ink:#1a1613;--muted:#625c57;--line:#e4dfda;--brand:#a45118;--wa:#0a6b34;--paper:#f8f5f2}
+:root{color-scheme:light;--ink:#121E31;--muted:#4F6078;--line:#DCE4EE;--brand:#1560C8;--wa:#0a6b34;--paper:#F3F7FB}
 *{box-sizing:border-box;margin:0;padding:0}
 body{font-family:"Cairo","Cairo Fallback",system-ui,sans-serif;color:var(--ink);background:var(--paper);
   line-height:1.6;-webkit-text-size-adjust:100%}
@@ -162,7 +162,7 @@ ol.next li{margin-block-end:8px}
 .btn--ghost{background:#fff;border-color:var(--line);color:var(--ink)}
 .keep{margin-block-start:12px;font-size:.8125rem;color:var(--muted)}
 .vh{position:absolute;width:1px;height:1px;overflow:hidden;clip-path:inset(50%);white-space:nowrap}
-a:focus-visible,button:focus-visible{outline:3px solid #100d0a;outline-offset:2px;box-shadow:0 0 0 5px #fff}
+a:focus-visible,button:focus-visible{outline:3px solid #0B1626;outline-offset:2px;box-shadow:0 0 0 5px #fff}
 @media print{body{background:#fff}.acts,.copy{display:none}.card{border:0;padding:0;margin-block-end:12px}}
 `;
 
@@ -243,7 +243,7 @@ export default async function handler(req, res) {
     const state = await readJson(STATE_PATH);
     whatsapp = String((state && state.settings && state.settings.whatsapp) || "").replace(/\D/g, "");
   } catch (e) { /* the catalogue default is filled in below */ }
-  if (!whatsapp) whatsapp = "963949951985";
+  if (!whatsapp) whatsapp = "963982760670";
 
   /* Five lines. Every Arabic line is either pure Arabic or Arabic followed by
      exactly one trailing LTR run, so the bidi order is stable. */

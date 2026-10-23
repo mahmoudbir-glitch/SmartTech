@@ -1,5 +1,5 @@
 /*
- * SYRIATECH — the order sheet.
+ * SmartTech — the order sheet.
  * ============================
  * The surface between "I want this" and `/checkout`. It is called **طلبك**,
  * not "سلة المشتريات": the same word the record carries in the admin, because
@@ -110,14 +110,14 @@
 
 /* 2,744px of content used to scroll inside a 485px window with no count in
    sight. This is 20px of sub-header that survives the scroll. */
-#cart .cart__count{position:sticky;inset-block-start:0;z-index:1;background:var(--n-25,#fdfaf8);
-border-block-end:1px solid var(--n-200,#e4dfda);padding:var(--s-1,4px) var(--s-4,16px);
-font-size:var(--t-100,.8125rem);line-height:20px;color:var(--n-600,#625c57);font-weight:var(--w-medium,600)}
+#cart .cart__count{position:sticky;inset-block-start:0;z-index:1;background:var(--n-25,#FAFCFE);
+border-block-end:1px solid var(--n-200,#DCE4EE);padding:var(--s-1,4px) var(--s-4,16px);
+font-size:var(--t-100,.8125rem);line-height:20px;color:var(--n-600,#4F6078);font-weight:var(--w-medium,600)}
 
 /* The one remaining transient. Inside the sheet it cannot cover the page;
    docked above the totals it cannot cover the button. */
 #cart .cart__undo{flex:none;display:flex;align-items:center;justify-content:space-between;gap:var(--s-2,8px);
-min-block-size:44px;padding-inline:var(--s-4,16px);background:var(--n-950,#100d0a);color:var(--n-0,#fff);font-size:var(--t-100,.8125rem)}
+min-block-size:44px;padding-inline:var(--s-4,16px);background:var(--n-950,#0B1626);color:var(--n-0,#fff);font-size:var(--t-100,.8125rem)}
 #cart .cart__undo[hidden]{display:none}
 #cart .cart__undo button{min-block-size:44px;padding-inline:var(--s-2,8px);border:0;background:transparent;
 color:var(--n-0,#fff);font-weight:var(--w-bold,700);text-decoration:underline}
@@ -131,7 +131,7 @@ min-block-size:40px;color:var(--danger,#a4283a);font-size:var(--t-100,.8125rem);
 /* The persistent bar. No timer; it sits above the bottom bar rather than over
    it, so it invents no z-index and covers nothing. */
 .cartbar{position:fixed;inset-inline:0;inset-block-end:var(--bottombar,0px);z-index:var(--z-bottombar,30);
-block-size:52px;background:var(--n-950,#100d0a);color:var(--n-0,#fff);
+block-size:52px;background:var(--n-950,#0B1626);color:var(--n-0,#fff);
 animation:cartbar-in var(--d-2,200ms) var(--e-out,cubic-bezier(.2,0,0,1))}
 .cartbar[hidden]{display:none}
 .cartbar__hit{inline-size:100%;block-size:52px;display:flex;align-items:center;justify-content:space-between;

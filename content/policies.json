@@ -6,9 +6,9 @@
       "tr": "Teslimat ve kargo"
     },
     "intro": {
-      "ar": "نوصّل طلبات Syriatech إلى جميع المحافظات السورية، ونتفق معك على كل التفاصيل عبر واتساب قبل أن يخرج الطلب. لا نرسل أي طلب قبل أن تؤكده بنفسك.",
-      "en": "We deliver Syriatech orders to every Syrian governorate, and we agree all the details with you on WhatsApp first. Nothing leaves us before you confirm the order yourself.",
-      "tr": "Syriatech siparişlerini Suriye'nin tüm illerine ulaştırıyoruz ve tüm ayrıntıları önce WhatsApp'tan konuşuyoruz. Siz onaylamadan hiçbir sipariş yola çıkmaz."
+      "ar": "نوصّل طلبات SmartTech إلى جميع المحافظات السورية، ونتفق معك على كل التفاصيل عبر واتساب قبل أن يخرج الطلب. لا نرسل أي طلب قبل أن تؤكده بنفسك.",
+      "en": "We deliver SmartTech orders to every Syrian governorate, and we agree all the details with you on WhatsApp first. Nothing leaves us before you confirm the order yourself.",
+      "tr": "SmartTech siparişlerini Suriye'nin tüm illerine ulaştırıyoruz ve tüm ayrıntıları önce WhatsApp'tan konuşuyoruz. Siz onaylamadan hiçbir sipariş yola çıkmaz."
     },
     "points": [
       {
@@ -154,9 +154,9 @@
       "tr": "Garanti"
     },
     "intro": {
-      "ar": "كل ما نبيعه أصلي ومشمول بضمان الوكيل المعتمد. إذا ظهر عطل ضمن فترة الضمان، تابع الأمر معنا على واتساب ولا داعي لأن تبحث عن جهة أخرى.",
-      "en": "Everything we sell is genuine and carries the authorised distributor's warranty. If a fault shows up within the warranty, deal with us on WhatsApp — there is no one else to chase.",
-      "tr": "Sattığımız her ürün orijinaldir ve yetkili distribütör garantisi taşır. Garanti süresi içinde bir arıza çıkarsa WhatsApp'tan bize yazmanız yeterli; başka bir yeri aramanıza gerek yok."
+      "ar": "كل ما نبيعه أصلي. إذا ظهر عطل في منتج اشتريته منا، راسلنا على واتساب وسنوضح لك الخطوات.",
+      "en": "Everything we sell is genuine. If a product you bought from us develops a fault, message us on WhatsApp and we will explain the next steps.",
+      "tr": "Sattığımız her ürün orijinaldir. Bizden aldığınız üründe arıza çıkarsa WhatsApp'tan yazın, sonraki adımları anlatalım."
     },
     "points": [
       {
@@ -166,9 +166,9 @@
           "tr": "Hangi garantiyi alıyorum?"
         },
         "a": {
-          "ar": "تحصل على ضمان الوكيل المعتمد للعلامة نفسها، لأننا موزّع رسمي ولا نبيع إلا بضاعة أصلية. الضمان يغطي عيوب التصنيع ضمن الاستخدام الطبيعي.",
-          "en": "You get the brand's authorised distributor warranty, because we are an official distributor and we sell genuine stock only. It covers manufacturing defects under normal use.",
-          "tr": "Yetkili distribütör olduğumuz ve yalnızca orijinal ürün sattığımız için markanın distribütör garantisini alırsınız. Garanti, normal kullanımdaki üretim hatalarını kapsar."
+          "ar": "لا نبيع إلا بضاعة أصلية. شروط الضمان على كل منتج نؤكدها لك عبر واتساب قبل الشراء.",
+          "en": "We sell genuine stock only. We confirm the warranty terms for each product with you on WhatsApp before you buy.",
+          "tr": "Yalnızca orijinal ürün satıyoruz. Her ürünün garanti koşullarını satın almadan önce WhatsApp'tan size teyit ederiz."
         }
       },
       {

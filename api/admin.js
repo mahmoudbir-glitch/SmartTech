@@ -1,5 +1,5 @@
 /*
- * SYRIATECH — the administration console's server.
+ * SmartTech — the administration console's server.
  *
  * Everything the console does goes through this one function behind
  * `?action=`, so the project stays inside its Vercel function budget. The

@@ -8,7 +8,7 @@
 const fs = require("fs");
 const path = require("path");
 
-const REPO = process.argv[2] || "D:/bir/syriatech-store";
+const REPO = process.argv[2] || path.resolve(__dirname, "..");
 const SITE = "https://syriatech-store.vercel.app";
 
 const win = {};

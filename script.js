@@ -1,5 +1,5 @@
 /*
- * SYRIATECH — the storefront.
+ * SmartTech — the storefront.
  * ===========================
  * One document, seven surfaces, selected by `body[data-route]`. This file owns
  * the chrome (header, bottom bar, departments sheet), the product card, the
@@ -1280,6 +1280,7 @@
       el.innerHTML = n ? SY.num(n) : "";
     }
     qs("#slotWa").href = waLink(t("waHello"));
+    ["#heroWa", "#navWholesale", "#navContact"].forEach(sel => { const el = qs(sel); if (el) el.href = waLink(t("waHello")); });
     const rights = qs("#footerRights");
     if (rights) rights.innerHTML = t("footerRights", { year: SY.num(new Date().getFullYear()) });
     const select = qs("#langSelect");
@@ -1324,6 +1325,7 @@
     show("#brandstrip", home);
     show("#trust", !product);
     show("#homeTitle", home);
+    show(".hero", home);
     /* product.js owns what goes inside; the shell owns whether it is on screen. */
     show("#productView", product);
     syncBottomBar(SY.topDialog() ? 1 : 0);

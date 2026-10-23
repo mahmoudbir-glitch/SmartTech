@@ -1,5 +1,5 @@
 /*
- * SYRIATECH — /checkout.
+ * SmartTech — /checkout.
  * ======================
  * Four required fields, one payment method presented as a choice, and a grand
  * total written as an expression instead of a number.

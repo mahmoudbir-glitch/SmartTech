@@ -1,5 +1,5 @@
 /*
- * SYRIATECH — the shared runtime.
+ * SmartTech — the shared runtime.
  * ===============================
  * Everything more than one page needs: text, numbers that survive Arabic,
  * icons, the catalogue, the overlay stack, announcements, storage, the basket

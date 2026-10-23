@@ -1,5 +1,5 @@
 /*
- * SYRIATECH — كل نصوص المتجر
+ * SmartTech — كل نصوص المتجر
  * ============================
  * هذا هو الملف الوحيد الذي يحتوي نصوصاً يقرأها الزبون.
  * لإضافة لغة جديدة: أضفها إلى languages ثم أضف قاموساً لها بنفس المفاتيح.
@@ -33,14 +33,14 @@
   const dict = {
     ar: {
       /* ----------------- الهوية ووسوم الصفحة · identity and page tags */
-      brandName: "SYRIATECH",
-      pageTitle: "سيريا تك | شواحن وسماعات وكاميرات مراقبة أصلية في سوريا",
-      metaDescription: "متجر سيريا تك: شواحن وباور بانك وسماعات وكاميرات مراقبة أصلية من Anker، eufy، soundcore، Kingston. وكيل معتمد في سوريا وتوصيل لكل المحافظات.",
+      brandName: "SmartTech",
+      pageTitle: "سمارت تك | منتجات Anker الأصلية جملة ومفرق — أعزاز، حلب",
+      metaDescription: "متجر سمارت تك في أعزاز – حلب: شواحن وباور بانك وسماعات من Anker وsoundcore وeufy. جملة ومفرق، والطلب عبر واتساب.",
 
       /* ------------------------ الرأس والتنقل · header and navigation */
       skipToMain: "الانتقال إلى المحتوى",
       skipToProducts: "الانتقال إلى المحتوى",
-      homeTitle: "سيريا تك — إلكترونيات أصلية بضمان الوكيل",
+      homeTitle: "سمارت تك — منتجات Anker الأصلية 100%",
       navHome: "الصفحة الرئيسية",
       navDepts: "الأقسام",
       navSearch: "بحث",
@@ -70,7 +70,19 @@
       /* --------------------------------------- الصفحة الرئيسية · home */
       homeDeptsWord: "أقسام",
       homeItemsWord: "منتجاً",
-      homeAuthorised: "وكيل معتمد",
+      homeAuthorised: "جملة ومفرق",
+      heroBadge: "أصلي 100%",
+      heroTitle: "منتجات Anker الأصلية 100%",
+      heroSub: "جملة ومفرق — حلب، أعزاز",
+      heroOrder: "اطلب عبر واتساب",
+      heroBrowse: "تصفّح منتجات Anker",
+      promoBar: "متوفر الآن — جملة ومفرق",
+      navAnker: "Anker",
+      navSoundcore: "Soundcore",
+      navAccessories: "ملحقات الجوال",
+      navWholesale: "الجملة",
+      navContact: "تواصل معنا",
+      navBrandsLabel: "العلامات التجارية",
       deptsTitle: "الأقسام",
       deptsAllIn: "كل منتجات {name}",
       deptsBrands: "العلامات التجارية",
@@ -140,17 +152,17 @@
       /* --------------------------- العلامات والثقة · brands and trust */
       brandStripTitle: "تسوّق حسب العلامة",
       brandStripAll: "كل العلامات",
-      trustTitle: "لماذا سيريا تك",
-      trustGenuineTitle: "بضاعة وكيل أصلية",
-      trustGenuineText: "كل قطعة تصل من الموزّع المعتمد للعلامة نفسها، بعلبتها وملحقاتها وضمان المصنّع.",
+      trustTitle: "لماذا سمارت تك",
+      trustGenuineTitle: "بضاعة أصلية",
+      trustGenuineText: "منتجات Anker وsoundcore وeufy الأصلية، بعلبتها وملحقاتها.",
       trustDeliveryTitle: "توصيل لكل المحافظات",
       trustDeliveryText: "نشحن إلى جميع المحافظات السورية، وتُحدَّد أجرة التوصيل حسب مدينتك قبل الشحن.",
       trustPriceTitle: "سعر واضح قبل الطلب",
       trustPriceText: "السعر المعروض هو السعر، بلا رسوم أو إضافات تظهر لاحقاً.",
-      trustDistributor: "سيريا تك موزّع معتمد في سوريا لعلامات Anker، eufy، soundcore، Nebula، PITAKA، Kingston، والضمان ضمان المصنّع.",
+      trustDistributor: "سمارت تك متجر في أعزاز – حلب لبيع منتجات Anker وsoundcore وeufy بالجملة والمفرق.",
 
       /* --------------------------------------------- التذييل · footer */
-      footerAbout: "متجر سوري للتقنية الأصلية — موزّعون معتمدون للعلامات التي نبيعها.",
+      footerAbout: "متجر في أعزاز – حلب لمنتجات Anker الأصلية، جملة ومفرق.",
       footerDepts: "الأقسام",
       footerShop: "المتجر",
       footerHelp: "المساعدة",
@@ -159,8 +171,8 @@
       footerContact: "تواصل معنا",
       footerAdmin: "لوحة تحكم المتجر",
       footerNote: "جميع الأسماء والعلامات التجارية ملك لأصحابها.",
-      footerRights: "© {year} سيريا تك",
-      footerRightsFallback: "© سيريا تك",
+      footerRights: "© {year} سمارت تك",
+      footerRightsFallback: "© سمارت تك",
 
       /* --------- الصفحات المولّدة على الخادم · server-rendered routes */
       routeHome: "الرئيسية",
@@ -172,13 +184,13 @@
       routeCountMany: "{n} منتجاً",
       routeBrowse: "كل الأقسام",
       routeBrowseTitle: "كل الأقسام — {count} | {site}",
-      routeBrowseDesc: "تصفّح كل أقسام متجر سيريا تك وفئاته في صفحة واحدة: {count} مرتّبة حسب القسم، مع عدد المنتجات في كل فئة.",
+      routeBrowseDesc: "تصفّح كل أقسام متجر سمارت تك وفئاته في صفحة واحدة: {count} مرتّبة حسب القسم، مع عدد المنتجات في كل فئة.",
       routeBrands: "العلامات التجارية",
       routeBrandsTitle: "العلامات التجارية — {count} | {site}",
       routeBrandsDesc: "كل العلامات التي نوزّعها في سوريا مع عدد المنتجات خلف كل واحدة: {count} أصلية بضمان المصنّع.",
       routeCatHeading: "{label} في سوريا",
       routeCatTitle: "{label} في سوريا — {count} | {site}",
-      routeCatDesc: "تسوّق {label} في سوريا: {count} من {brand} وغيرها، بأسعار من {min} إلى {max}. بضاعة وكيل أصلية وتوصيل لكل المحافظات.",
+      routeCatDesc: "تسوّق {label}: {count} من {brand} وغيرها، بأسعار من {min} إلى {max}. منتجات أصلية والطلب عبر واتساب.",
       routeBrandHeading: "منتجات {brand} في سوريا",
       routeBrandTitle: "منتجات {brand} في سوريا — {count} | {site}",
       routeBrandDesc: "كل منتجات {brand} الأصلية في سوريا: {count} بأسعار من {min} إلى {max}، بضمان المصنّع وتوصيل لكل المحافظات.",
@@ -241,7 +253,7 @@
       shareProduct: "مشاركة المنتج",
       addFavorite: "أضف هذا المنتج إلى المفضلة",
       removeFavorite: "أزل هذا المنتج من المفضلة",
-      orderSingleIntro: "مرحباً سيريا تك، أريد الاستفسار عن هذا المنتج:",
+      orderSingleIntro: "مرحباً سمارت تك، أريد الاستفسار عن هذا المنتج:",
       orderLink: "رابط المنتج:",
       orderRef: "رقم الطلب",
 
@@ -285,14 +297,14 @@
 
     en: {
       /* ----------------- الهوية ووسوم الصفحة · identity and page tags */
-      brandName: "SYRIATECH",
-      pageTitle: "Syriatech | Genuine chargers, audio and security cameras in Syria",
-      metaDescription: "Syriatech stocks genuine chargers, power banks, audio and security cameras from Anker, eufy, soundcore and Kingston. Authorised distributor in Syria, delivery to every governorate.",
+      brandName: "SmartTech",
+      pageTitle: "SmartTech | Genuine Anker products, wholesale & retail — Azaz, Aleppo",
+      metaDescription: "SmartTech in Azaz, Aleppo: chargers, power banks and audio from Anker, soundcore and eufy. Wholesale and retail, order on WhatsApp.",
 
       /* ------------------------ الرأس والتنقل · header and navigation */
       skipToMain: "Skip to content",
       skipToProducts: "Skip to content",
-      homeTitle: "Syriatech — genuine electronics with the manufacturer's warranty",
+      homeTitle: "SmartTech — 100% genuine Anker products",
       navHome: "Home",
       navDepts: "Departments",
       navSearch: "Search",
@@ -322,7 +334,19 @@
       /* --------------------------------------- الصفحة الرئيسية · home */
       homeDeptsWord: "departments",
       homeItemsWord: "products",
-      homeAuthorised: "Authorised distributor",
+      homeAuthorised: "Wholesale & retail",
+      heroBadge: "100% genuine",
+      heroTitle: "100% genuine Anker products",
+      heroSub: "Wholesale & retail — Azaz, Aleppo",
+      heroOrder: "Order on WhatsApp",
+      heroBrowse: "Browse Anker products",
+      promoBar: "In stock now — wholesale & retail",
+      navAnker: "Anker",
+      navSoundcore: "Soundcore",
+      navAccessories: "Phone accessories",
+      navWholesale: "Wholesale",
+      navContact: "Contact us",
+      navBrandsLabel: "Brands",
       deptsTitle: "Departments",
       deptsAllIn: "Everything in {name}",
       deptsBrands: "Brands",
@@ -392,17 +416,17 @@
       /* --------------------------- العلامات والثقة · brands and trust */
       brandStripTitle: "Shop by brand",
       brandStripAll: "All brands",
-      trustTitle: "Why Syriatech",
-      trustGenuineTitle: "Genuine distributor stock",
-      trustGenuineText: "Every item comes from the brand's own authorised distributor, in its box, with its accessories and the manufacturer's warranty.",
+      trustTitle: "Why SmartTech",
+      trustGenuineTitle: "Genuine stock",
+      trustGenuineText: "Genuine Anker, soundcore and eufy products, in their box with their accessories.",
       trustDeliveryTitle: "Delivery to every governorate",
       trustDeliveryText: "We ship to every Syrian governorate. The delivery charge depends on your city and is agreed before we ship.",
       trustPriceTitle: "A clear price before you order",
       trustPriceText: "The price you see is the price — no fees appear later.",
-      trustDistributor: "Syriatech is the authorised distributor in Syria for Anker, eufy, soundcore, Nebula, PITAKA and Kingston, and the warranty is the manufacturer's own.",
+      trustDistributor: "SmartTech is a store in Azaz, Aleppo selling Anker, soundcore and eufy products wholesale and retail.",
 
       /* --------------------------------------------- التذييل · footer */
-      footerAbout: "A Syrian store for genuine technology — authorised distributors for the brands we sell.",
+      footerAbout: "A store in Azaz, Aleppo for genuine Anker products, wholesale and retail.",
       footerDepts: "Departments",
       footerShop: "Shop",
       footerHelp: "Help",
@@ -411,8 +435,8 @@
       footerContact: "Contact us",
       footerAdmin: "Store admin",
       footerNote: "All names and trademarks are the property of their owners.",
-      footerRights: "© {year} Syriatech",
-      footerRightsFallback: "© Syriatech",
+      footerRights: "© {year} SmartTech",
+      footerRightsFallback: "© SmartTech",
 
       /* --------- الصفحات المولّدة على الخادم · server-rendered routes */
       routeHome: "Home",
@@ -424,13 +448,13 @@
       routeCountMany: "{n} products",
       routeBrowse: "All departments",
       routeBrowseTitle: "All departments — {count} | {site}",
-      routeBrowseDesc: "Browse every Syriatech department and category on one page: {count}, grouped by department, with a count for each.",
+      routeBrowseDesc: "Browse every SmartTech department and category on one page: {count}, grouped by department, with a count for each.",
       routeBrands: "Brands",
       routeBrandsTitle: "Brands — {count} | {site}",
       routeBrandsDesc: "Every brand we distribute in Syria, with the number of products behind each: {count}, all genuine and under the manufacturer's warranty.",
       routeCatHeading: "{label} in Syria",
       routeCatTitle: "{label} — {count} | {site}",
-      routeCatDesc: "Shop {label} in Syria: {count} from {brand} and others, priced {min} to {max}. Genuine distributor stock, delivered to every governorate.",
+      routeCatDesc: "Shop {label}: {count} from {brand} and others, priced {min} to {max}. Genuine products, order on WhatsApp.",
       routeBrandHeading: "{brand} in Syria",
       routeBrandTitle: "{brand} — {count} | {site}",
       routeBrandDesc: "Every genuine {brand} product in Syria: {count} priced {min} to {max}, with the manufacturer's warranty and delivery to every governorate.",
@@ -493,7 +517,7 @@
       shareProduct: "Share this product",
       addFavorite: "Add this product to your favourites",
       removeFavorite: "Remove this product from your favourites",
-      orderSingleIntro: "Hello Syriatech, I have a question about this product:",
+      orderSingleIntro: "Hello SmartTech, I have a question about this product:",
       orderLink: "Product link:",
       orderRef: "Order number",
 
@@ -537,14 +561,14 @@
 
     tr: {
       /* ----------------- الهوية ووسوم الصفحة · identity and page tags */
-      brandName: "SYRIATECH",
-      pageTitle: "Syriatech | Suriye'de orijinal şarj cihazları, ses ve güvenlik kameraları",
-      metaDescription: "Syriatech'te Anker, eufy, soundcore ve Kingston'dan orijinal şarj cihazları, powerbank, ses ve güvenlik kameraları. Suriye'de yetkili distribütör, tüm illere teslimat.",
+      brandName: "SmartTech",
+      pageTitle: "SmartTech | Orijinal Anker ürünleri, toptan ve perakende — Azaz, Halep",
+      metaDescription: "Azaz, Halep'teki SmartTech: Anker, soundcore ve eufy şarj cihazları, powerbank ve ses ürünleri. Toptan ve perakende, WhatsApp ile sipariş.",
 
       /* ------------------------ الرأس والتنقل · header and navigation */
       skipToMain: "İçeriğe geç",
       skipToProducts: "Doğrudan içeriğe geç",
-      homeTitle: "Syriatech — üreticinin garantisiyle orijinal elektronik",
+      homeTitle: "SmartTech — %100 orijinal Anker ürünleri",
       navHome: "Ana sayfa",
       navDepts: "Bölümler",
       navSearch: "Ara",
@@ -574,7 +598,19 @@
       /* --------------------------------------- الصفحة الرئيسية · home */
       homeDeptsWord: "bölüm",
       homeItemsWord: "ürün",
-      homeAuthorised: "Yetkili distribütör",
+      homeAuthorised: "Toptan ve perakende",
+      heroBadge: "%100 orijinal",
+      heroTitle: "%100 orijinal Anker ürünleri",
+      heroSub: "Toptan ve perakende — Azaz, Halep",
+      heroOrder: "WhatsApp ile sipariş ver",
+      heroBrowse: "Anker ürünlerine göz at",
+      promoBar: "Şimdi stokta — toptan ve perakende",
+      navAnker: "Anker",
+      navSoundcore: "Soundcore",
+      navAccessories: "Telefon aksesuarları",
+      navWholesale: "Toptan",
+      navContact: "Bize ulaşın",
+      navBrandsLabel: "Markalar",
       deptsTitle: "Bölümler",
       deptsAllIn: "{name} bölümünün tamamı",
       deptsBrands: "Markalar",
@@ -644,17 +680,17 @@
       /* --------------------------- العلامات والثقة · brands and trust */
       brandStripTitle: "Markaya göre alışveriş",
       brandStripAll: "Tüm markalar",
-      trustTitle: "Neden Syriatech",
-      trustGenuineTitle: "Orijinal distribütör ürünü",
-      trustGenuineText: "Her ürün, markanın kendi yetkili distribütöründen; kutusu, aksesuarları ve üretici garantisiyle gelir.",
+      trustTitle: "Neden SmartTech",
+      trustGenuineTitle: "Orijinal ürün",
+      trustGenuineText: "Kutusu ve aksesuarlarıyla orijinal Anker, soundcore ve eufy ürünleri.",
       trustDeliveryTitle: "Tüm illere teslimat",
       trustDeliveryText: "Suriye'nin tüm illerine gönderiyoruz. Teslimat ücreti şehrinize göre belirlenir ve gönderimden önce onaylanır.",
       trustPriceTitle: "Sipariş öncesi net fiyat",
       trustPriceText: "Gördüğünüz fiyat nihai fiyattır; sonradan çıkan ücret yoktur.",
-      trustDistributor: "Syriatech; Anker, eufy, soundcore, Nebula, PITAKA ve Kingston'ın Suriye'deki yetkili distribütörüdür ve garanti, üreticinin kendi garantisidir.",
+      trustDistributor: "SmartTech, Azaz/Halep'te Anker, soundcore ve eufy ürünlerini toptan ve perakende satan bir mağazadır.",
 
       /* --------------------------------------------- التذييل · footer */
-      footerAbout: "Orijinal teknoloji için bir Suriye mağazası — sattığımız markaların yetkili distribütörü.",
+      footerAbout: "Azaz/Halep'te orijinal Anker ürünleri için toptan ve perakende bir mağaza.",
       footerDepts: "Bölümler",
       footerShop: "Mağaza",
       footerHelp: "Yardım",
@@ -663,8 +699,8 @@
       footerContact: "Bize ulaşın",
       footerAdmin: "Mağaza yönetimi",
       footerNote: "Tüm adlar ve ticari markalar sahiplerine aittir.",
-      footerRights: "© {year} Syriatech",
-      footerRightsFallback: "© Syriatech",
+      footerRights: "© {year} SmartTech",
+      footerRightsFallback: "© SmartTech",
 
       /* --------- الصفحات المولّدة على الخادم · server-rendered routes */
       routeHome: "Ana sayfa",
@@ -676,13 +712,13 @@
       routeCountMany: "{n} ürün",
       routeBrowse: "Tüm bölümler",
       routeBrowseTitle: "Tüm bölümler — {count} | {site}",
-      routeBrowseDesc: "Syriatech'in tüm bölüm ve kategorilerini tek sayfada görün: {count}, bölüme göre gruplanmış ve her kategoride ürün sayısıyla.",
+      routeBrowseDesc: "SmartTech'in tüm bölüm ve kategorilerini tek sayfada görün: {count}, bölüme göre gruplanmış ve her kategoride ürün sayısıyla.",
       routeBrands: "Markalar",
       routeBrandsTitle: "Markalar — {count} | {site}",
       routeBrandsDesc: "Suriye'de dağıttığımız tüm markalar ve her birinin arkasındaki ürün sayısı: {count}, tamamı orijinal ve üretici garantili.",
       routeCatHeading: "Suriye'de {label}",
       routeCatTitle: "{label} — {count} | {site}",
-      routeCatDesc: "Suriye'de {label}: {brand} ve diğer markalardan {count}, {min} ile {max} arası fiyatlarla. Orijinal distribütör ürünü, tüm illere teslimat.",
+      routeCatDesc: "{label} alışverişi: {brand} ve diğer markalardan {count}, {min} ile {max} arası fiyatlarla. Orijinal ürünler, WhatsApp ile sipariş.",
       routeBrandHeading: "Suriye'de {brand}",
       routeBrandTitle: "{brand} — {count} | {site}",
       routeBrandDesc: "Suriye'deki tüm orijinal {brand} ürünleri: {min} ile {max} arası fiyatlarla {count}, üretici garantili ve tüm illere teslimat.",
@@ -745,7 +781,7 @@
       shareProduct: "Bu ürünü paylaşın",
       addFavorite: "Bu ürünü favorilerinize ekleyin",
       removeFavorite: "Bu ürünü favorilerinizden çıkarın",
-      orderSingleIntro: "Merhaba Syriatech, bu ürün hakkında bilgi almak istiyorum:",
+      orderSingleIntro: "Merhaba SmartTech, bu ürün hakkında bilgi almak istiyorum:",
       orderLink: "Ürün bağlantısı:",
       orderRef: "Sipariş numarası",
 

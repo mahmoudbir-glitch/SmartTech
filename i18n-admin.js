@@ -1,5 +1,5 @@
 /*
- * SYRIATECH — كل نصوص لوحة التحكم
+ * SmartTech — كل نصوص لوحة التحكم
  * =================================
  * 41.1% من i18n.js كان نصوص لوحة تحكم: 22,697 بايتاً عبر ثلاث لغات، يحمّلها كل
  * زبون على هاتفه ليقرأ صفحة منتج — 6.0 كيلوبايت مضغوطة، أي 10% من ميزانية
@@ -22,10 +22,10 @@
 
   const dict = {
     ar: {
-      adminPageTitle: "Syriatech | لوحة التحكم",
+      adminPageTitle: "SmartTech | لوحة التحكم",
       admin: {
         /* ---------------------------------------------------------- shell */
-        pageTitle: "Syriatech | لوحة التحكم",
+        pageTitle: "SmartTech | لوحة التحكم",
         title: "لوحة تحكم المتجر",
         loginHint: "أدخل كلمة المرور للدخول",
         password: "كلمة المرور",
@@ -658,9 +658,9 @@
     },
 
     en: {
-      adminPageTitle: "Syriatech | Store console",
+      adminPageTitle: "SmartTech | Store console",
       admin: {
-        pageTitle: "Syriatech | Store console",
+        pageTitle: "SmartTech | Store console",
         title: "Store console",
         loginHint: "Enter the password to sign in",
         password: "Password",
@@ -1279,9 +1279,9 @@
     },
 
     tr: {
-      adminPageTitle: "Syriatech | Mağaza paneli",
+      adminPageTitle: "SmartTech | Mağaza paneli",
       admin: {
-        pageTitle: "Syriatech | Mağaza paneli",
+        pageTitle: "SmartTech | Mağaza paneli",
         title: "Mağaza paneli",
         loginHint: "Girmek için şifreyi yazın",
         password: "Şifre",

@@ -550,7 +550,7 @@ export default async function handler(req, res) {
 
     const tags =
       '<meta property="og:type" content="product">' +
-      '<meta property="og:site_name" content="Syriatech">' +
+      '<meta property="og:site_name" content="SmartTech">' +
       '<meta property="og:url" content="' + esc(url) + '">' +
       '<meta property="og:title" content="' + esc(name + " — " + product.price.toFixed(2) + " USD") + '">' +
       '<meta property="og:description" content="' + esc(description) + '">' +

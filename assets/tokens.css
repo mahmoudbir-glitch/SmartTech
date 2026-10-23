@@ -5,8 +5,8 @@
  * one. `tools/build-css.cjs` inlines this block into style.css and admin.css
  * so each page still costs one stylesheet request; edit it here, never there.
  *
- * The identity is "Damascus Copper": warm paper, near-black ink, and one
- * copper accent. Copper because the brand colour has to avoid every hue a
+ * The identity is "SmartTech Navy": cool paper, deep navy ink, a blue
+ * action colour and a cyan mark. Copper because the brand colour has to avoid every hue a
  * supplier already owns — Anker's and soundcore's cyan, UGREEN's green,
  * Kingston's and Joyroom's red, WhatsApp's green — and still be dark enough
  * to carry white text on a button, be a link on paper, and be a focus ring,
@@ -23,29 +23,29 @@
      — the blue-grey neutrals were most of why the old page read as a template.
      Fourteen steps. There is no fifteenth; every grey must be one of these. */
   --n-0:   #FFFFFF;   /* card, product plate, input fill                     */
-  --n-25:  #FDFAF8;   /* raised alternate, sub-bar                           */
-  --n-50:  #F8F5F2;   /* page                                                */
-  --n-100: #F0ECE8;   /* subtle fill, skeleton, disabled fill                */
-  --n-200: #E4DFDA;   /* hairline (cards, dividers) — decorative             */
-  --n-300: #D1CBC6;   /* strong line                                         */
-  --n-400: #A9A39E;   /* icon on dark                                        */
-  --n-450: #968F8A;   /* FIELD BORDER — 3.19:1 on white, WCAG 1.4.11         */
-  --n-500: #77716B;   /* meta, struck price — 4.82:1                         */
-  --n-600: #625C57;   /* muted ink — 6.59:1                                  */
-  --n-700: #47413D;   /* secondary heading                                   */
-  --n-800: #2D2824;   /* out-of-stock plate                                  */
-  --n-900: #1A1613;   /* body ink — 17.98:1                                  */
-  --n-950: #100D0A;   /* price, header slab, footer — 19.37:1                */
+  --n-25:  #FAFCFE;   /* raised alternate, sub-bar                           */
+  --n-50:  #F3F7FB;   /* page                                                */
+  --n-100: #E9EFF6;   /* subtle fill, skeleton, disabled fill                */
+  --n-200: #DCE4EE;   /* hairline (cards, dividers) — decorative             */
+  --n-300: #C6D1DE;   /* strong line                                         */
+  --n-400: #9FAEC0;   /* icon on dark                                        */
+  --n-450: #7D8DA3;   /* FIELD BORDER — 3.19:1 on white, WCAG 1.4.11         */
+  --n-500: #5E6F86;   /* meta, struck price — 4.82:1                         */
+  --n-600: #4F6078;   /* muted ink — 6.59:1                                  */
+  --n-700: #34455C;   /* secondary heading                                   */
+  --n-800: #1F2E45;   /* out-of-stock plate                                  */
+  --n-900: #121E31;   /* body ink — 17.98:1                                  */
+  --n-950: #0B1626;   /* price, header slab, footer — 19.37:1                */
 
   /* Brand — Damascus Copper */
-  --brand-subtle: #FFF0E4;  /* tinted chip, active filter background         */
-  --brand-soft:   #FDD7BD;  /* hover on a tint                               */
-  --brand-line:   #EEB793;  /* border of a tinted chip                       */
-  --brand:        #A45118;  /* primary action, focus, current department     */
-  --brand-hover:  #8F410E;
-  --brand-active: #79350F;
-  --brand-ink:    #893E0A;  /* brand-coloured TEXT on paper — 7.62:1         */
-  --brand-tint:   #E08A4A;  /* the mark on the dark slab — 8.6:1             */
+  --brand-subtle: #E8F1FD;  /* tinted chip, active filter background         */
+  --brand-soft:   #CFE2FA;  /* hover on a tint                               */
+  --brand-line:   #9EC3F0;  /* border of a tinted chip                       */
+  --brand:        #1560C8;  /* primary action, focus, current department     */
+  --brand-hover:  #0F57BB;
+  --brand-active: #0B4296;
+  --brand-ink:    #0E4FAE;  /* brand-coloured TEXT on paper — 7.62:1         */
+  --brand-tint:   #5BC8F5;  /* the mark on the dark slab — 8.6:1             */
 
   /* Semantic. Each colour means exactly one thing; see the map below. */
   --success:      #1B6738;  --success-bg: #E7F7EB;  --success-line: #B7DCC0;
@@ -140,16 +140,16 @@
   /* Three shadows, down from twenty. The shadow colour is the ink colour,
      never a brand colour: a coloured glow under a button is the loudest
      "free template" cue there is. */
-  --sh-1: 0 1px 2px rgba(16,13,10,.05), 0 8px 20px rgba(16,13,10,.05);
-  --sh-2: 0 2px 6px rgba(16,13,10,.06), 0 18px 40px rgba(16,13,10,.10);
-  --sh-3: 0 8px 20px rgba(16,13,10,.10), 0 40px 80px rgba(16,13,10,.18);
+  --sh-1: 0 1px 2px rgba(11,22,38,.05), 0 8px 20px rgba(11,22,38,.05);
+  --sh-2: 0 2px 6px rgba(11,22,38,.06), 0 18px 40px rgba(11,22,38,.10);
+  --sh-3: 0 8px 20px rgba(11,22,38,.10), 0 40px 80px rgba(11,22,38,.18);
 
   /* ---------------------------------------------------------------- focus */
   /* One ring, everywhere, two tones. A single colour cannot clear 3:1 against
      both a white card and a black product photo; a near-black ring with a
      white halo always has one half visible. Worst measured case 3.48:1 (the
      ink half on copper); the two halves contrast 19.37:1 with each other. */
-  --focus-ink:  #100D0A;
+  --focus-ink:  #0B1626;
   --focus-halo: #FFFFFF;
 
   /* --------------------------------------------------------------- motion */
