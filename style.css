@@ -25,6 +25,10 @@
   --brand-active: #0B4296;
   --brand-ink:    #0E4FAE;
   --brand-tint:   #5BC8F5;
+  --sky:          #1A8FCF;
+  --sky-deep:     #0F6FB5;
+  --sky-tint:     #7FD3F7;
+  --wa-fill:      #1FAF4B;
 
   --success:      #1B6738;  --success-bg: #E7F7EB;  --success-line: #B7DCC0;
   --warning:      #6D5900;  --warning-bg: #FCF4D8;  --warning-line: #EBCD9C;
@@ -3056,7 +3060,8 @@ body[data-route]:not([data-route="home"]) #railPopular,
 body[data-route]:not([data-route="home"]) #railOffers,
 body[data-route]:not([data-route="home"]) #railNew,
 body[data-route]:not([data-route="home"]) #brandstrip,
-body[data-route]:not([data-route="home"]) #homeTitle { display: none; }
+body[data-route]:not([data-route="home"]) #homeTitle,
+body[data-route]:not([data-route="home"]) .hero { display: none; }
 
 body[data-route="product"] #trust,
 body[data-route="home"] #listing,
@@ -3215,11 +3220,11 @@ footer .hdr__mark { color: var(--brand); }
   inline-size: 100%;
   box-sizing: border-box;
   margin: 0;
-  padding: 6px var(--inset);
-  background: var(--brand);
+  padding: 8px var(--inset);
+  background: var(--sky);
   color: var(--n-0);
   text-align: center;
-  font-size: var(--t-100);
+  font-size: var(--t-200);
   line-height: var(--lh-100);
   font-weight: var(--w-medium);
 }
@@ -3269,36 +3274,72 @@ footer .hdr__mark { color: var(--brand); }
 }
 .brandnav a:hover { color: var(--brand-tint); }
 
-/* Hero */
+/* Hero — sky gradient, full width on a phone, the SmartTech wordmark as the headline. */
 .hero {
   display: grid;
   justify-items: center;
-  gap: var(--s-3);
-  margin-block: var(--s-4);
-  padding: var(--s-5) var(--s-4);
-  border-radius: var(--r-xl);
-  background: linear-gradient(135deg, var(--brand-active) 0%, var(--brand) 100%);
+  gap: var(--s-4);
+  margin-block: 0 var(--s-5);
+  margin-inline: calc(var(--inset) * -1);
+  padding: var(--s-7) var(--inset) var(--s-6);
+  background: linear-gradient(180deg, var(--sky) 0%, var(--sky-deep) 100%);
   color: var(--n-0);
   text-align: center;
 }
 .hero__badge {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--s-2);
   margin: 0;
-  padding: 4px 14px;
+  padding: 8px 18px;
+  border: 1px solid rgba(255,255,255,.35);
   border-radius: var(--r-pill);
-  background: rgba(255,255,255,.16);
-  font-size: var(--t-100);
-  font-weight: var(--w-bold);
+  background: rgba(255,255,255,.14);
+  font-size: var(--t-200);
+  font-weight: var(--w-medium);
 }
+.hero__badge .icon { inline-size: 18px; block-size: 18px; }
 .hero__brand {
-  margin: 0;
-  font-size: var(--t-800);
-  line-height: 1.15;
+  margin: var(--s-3) 0 0;
+  font-size: clamp(3.25rem, 2.2rem + 5.4vw, 6rem);
+  line-height: 1.05;
+  background: linear-gradient(90deg, var(--n-0) 0 55.5%, var(--sky-tint) 55.5% 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
 }
-.hero__title { margin: 0; font-size: var(--t-600); line-height: var(--lh-600); font-weight: var(--w-bold); }
-.hero__sub { margin: 0; font-size: var(--t-300); opacity: .92; }
-.hero__cta { display: flex; flex-wrap: wrap; gap: var(--s-3); justify-content: center; margin-block-start: var(--s-2); }
-.hero__cta .btn { min-block-size: 44px; gap: var(--s-2); }
-.hero__cta .btn--wa { background: var(--wa-btn); color: var(--n-0); }
-.hero__ghost { background: transparent; color: var(--n-0); border: 2px solid rgba(255,255,255,.7); }
-.hero__ghost:hover { background: rgba(255,255,255,.12); color: var(--n-0); }
-@media (min-width: 768px) { .hero { padding-block: var(--s-8); } }
+.hero__title { margin: 0; font-size: var(--t-500); line-height: var(--lh-500); font-weight: var(--w-bold); }
+.hero__sub { margin: 0; font-size: var(--t-400); opacity: .9; }
+.hero__cta { display: grid; gap: var(--s-3); inline-size: 100%; max-inline-size: 480px; margin-block-start: var(--s-3); }
+.hero__cta .btn { display: flex; align-items: center; justify-content: center; min-block-size: 56px; gap: var(--s-2); border-radius: var(--r-pill); font-size: var(--t-400); font-weight: var(--w-bold); }
+.hero__cta .btn--wa { background: var(--wa-fill); color: var(--n-0); }
+.hero__cta .icon { inline-size: 22px; block-size: 22px; }
+.hero__ghost { background: rgba(255,255,255,.14); color: var(--n-0); border: 1px solid rgba(255,255,255,.35); }
+.hero__ghost:hover { background: rgba(255,255,255,.24); color: var(--n-0); }
+@media (min-width: 768px) {
+  .hero { margin-inline: 0; margin-block-start: var(--s-4); border-radius: var(--r-xl); padding-block: var(--s-8); }
+  .hero__cta { grid-auto-flow: column; max-inline-size: 560px; }
+}
+
+/* Bolt after the wordmark */
+.hdr__bolt { inline-size: 20px; block-size: 20px; flex: none; color: var(--brand-tint); }
+.hdr__lockup { gap: var(--s-1); }
+
+/* Floating WhatsApp button */
+.wa-fab {
+  position: fixed;
+  inset-inline-start: var(--s-4);
+  inset-block-end: calc(var(--bottombar) + var(--s-4));
+  z-index: var(--z-bottombar);
+  display: grid;
+  place-items: center;
+  inline-size: 56px;
+  block-size: 56px;
+  border-radius: var(--r-circle);
+  background: var(--wa-fill);
+  color: var(--n-0);
+  box-shadow: var(--sh-2);
+}
+.wa-fab .icon { inline-size: 30px; block-size: 30px; }
+
+/* Compact language switch so it never overlaps the icons beside it. */
+.hdr__actions select { inline-size: 76px; min-inline-size: 0; padding-inline: var(--s-2); font-size: var(--t-100); }

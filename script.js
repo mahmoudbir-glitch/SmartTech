@@ -1280,7 +1280,7 @@
       el.innerHTML = n ? SY.num(n) : "";
     }
     qs("#slotWa").href = waLink(t("waHello"));
-    ["#heroWa", "#navWholesale", "#navContact"].forEach(sel => { const el = qs(sel); if (el) el.href = waLink(t("waHello")); });
+    ["#heroWa", "#navWholesale", "#navContact", "#waFab"].forEach(sel => { const el = qs(sel); if (el) el.href = waLink(t("waHello")); });
     const rights = qs("#footerRights");
     if (rights) rights.innerHTML = t("footerRights", { year: SY.num(new Date().getFullYear()) });
     const select = qs("#langSelect");
