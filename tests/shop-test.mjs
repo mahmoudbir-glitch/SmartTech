@@ -39,7 +39,7 @@ async function open(url, { lang = "ar", width = 390, height = 844, motion = "no-
   page.on("pageerror", e => errors.push(String(e).slice(0, 200)));
   page.on("console", m => { if (m.type() === "error" && !/favicon|401/i.test(m.text())) errors.push(m.text().slice(0, 200)); });
   page.on("response", r => { if (r.url().startsWith(BASE) && r.status() >= 400) bad.push(r.url().replace(BASE, "") + " " + r.status()); });
-  await page.evaluateOnNewDocument(code => { try { localStorage.setItem("syriatech_lang", code); } catch (e) {} }, lang);
+  await page.evaluateOnNewDocument(code => { try { localStorage.setItem("smarttech_lang", code); } catch (e) {} }, lang);
   await page.goto(BASE + url + (url.includes("?") ? "&" : "?") + "lang=" + lang, { waitUntil: "networkidle0" });
   return { page, errors, bad };
 }

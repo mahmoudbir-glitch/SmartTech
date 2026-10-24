@@ -9,7 +9,7 @@ const fs = require("fs");
 const path = require("path");
 
 const REPO = process.argv[2] || path.resolve(__dirname, "..");
-const SITE = "https://syriatech-store.vercel.app";
+const SITE = "https://smarttech-mahmoudbir.vercel.app";
 
 const win = {};
 /* Every chunk of the split dictionary, so a key that moved is still found. */

@@ -68,7 +68,7 @@ function callerKey(req) {
 
 /* A request's Host header is attacker-controlled and must never decide where
    this function loads code from. */
-const SITE_FALLBACK = "https://syriatech-store.vercel.app";
+const SITE_FALLBACK = "https://smarttech-mahmoudbir.vercel.app";
 function trustedOrigin() {
   const host = process.env.SITE_ORIGIN || process.env.VERCEL_PROJECT_PRODUCTION_URL ||
     process.env.VERCEL_URL || SITE_FALLBACK;
@@ -256,7 +256,7 @@ function stamps(now) {
 const indexPath = month => "data/orders/" + month + "/index.json";
 const orderPath = (month, no) => "data/orders/" + month + "/" + no + ".json";
 
-const DEV_SECRET = "syriatech-order-url-dev-secret";
+const DEV_SECRET = "smarttech-order-url-dev-secret";
 function orderSecret() {
   const secret = process.env.ORDER_URL_SECRET || process.env.ADMIN_SECRET || "";
   if (secret) return secret;

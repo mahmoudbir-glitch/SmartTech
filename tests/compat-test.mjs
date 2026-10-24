@@ -6,7 +6,7 @@ import fs from "node:fs";
 import path from "node:path";
 import puppeteer from "puppeteer-core";
 
-const REPO = process.env.DEV_REPO || "D:/bir/syriatech-store";
+const REPO = process.env.DEV_REPO || "D:/bir/smarttech-store";
 const BASE = "http://127.0.0.1:" + (process.env.DEV_PORT || 3100);
 const SHOT = process.env.SHOT_DIR;
 let failures = 0;
@@ -135,7 +135,7 @@ for (const locale of LOCALES) {
   const page = await browser.newPage();
   await page.evaluateOnNewDocument(() => {
     Object.defineProperty(navigator, "languages", { get: () => ["tr-TR"] });
-    localStorage.setItem("syriatech_lang", "en");
+    localStorage.setItem("smarttech_lang", "en");
   });
   await page.goto(BASE, { waitUntil: "networkidle0" });
   check("a saved language choice wins over the device language", (await page.evaluate(() => document.documentElement.lang)) === "en");

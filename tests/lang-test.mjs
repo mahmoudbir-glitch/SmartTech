@@ -8,7 +8,7 @@ import fs from "node:fs";
 import path from "node:path";
 import puppeteer from "puppeteer-core";
 
-const REPO = process.env.DEV_REPO || "D:/bir/syriatech-store";
+const REPO = process.env.DEV_REPO || "D:/bir/smarttech-store";
 const BASE = "http://127.0.0.1:" + (process.env.DEV_PORT || 3100);
 let failures = 0;
 const check = (name, ok, detail) => {
@@ -236,7 +236,7 @@ for (const page of PAGES) {
     const tab = await browser.newPage();
     const errors = [];
     tab.on("pageerror", e => errors.push(String(e)));
-    await tab.evaluateOnNewDocument(lang => localStorage.setItem("syriatech_lang", lang), code);
+    await tab.evaluateOnNewDocument(lang => localStorage.setItem("smarttech_lang", lang), code);
     await tab.goto(BASE + page, { waitUntil: "networkidle0" });
     await new Promise(r => setTimeout(r, 400));
 
@@ -342,7 +342,7 @@ for (const page of PAGES) {
     title: document.title,
     heading: (document.querySelector("#homeTitle") || {}).textContent,
     card: (document.querySelector(".pcard__name") || {}).textContent,
-    stored: localStorage.getItem("syriatech_lang")
+    stored: localStorage.getItem("smarttech_lang")
   }));
   check("switching to tr updates the page", afterSwitch.dir === "ltr" &&
     afterSwitch.heading === maps.tr.homeTitle && afterSwitch.title === maps.tr.pageTitle, afterSwitch);

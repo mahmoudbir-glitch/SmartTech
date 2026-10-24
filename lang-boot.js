@@ -15,7 +15,7 @@
  */
 (function () {
   var DIRS = { ar: "rtl", en: "ltr", tr: "ltr" };
-  var KEY = "syriatech_lang";
+  var KEY = "smarttech_lang";
 
   function normalize(value) {
     var code = String(value || "").toLowerCase().slice(0, 2);

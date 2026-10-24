@@ -80,7 +80,7 @@ async function readJson(path, fallback) {
 
 /* Where the static asset lives. A request's Host header must never decide, so
    the origin is configured, never derived. */
-const SITE_FALLBACK = "https://syriatech-store.vercel.app";
+const SITE_FALLBACK = "https://smarttech-mahmoudbir.vercel.app";
 function trustedOrigin() {
   const host = process.env.SITE_ORIGIN || process.env.VERCEL_PROJECT_PRODUCTION_URL ||
     process.env.VERCEL_URL || SITE_FALLBACK;

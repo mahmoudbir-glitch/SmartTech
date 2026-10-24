@@ -25,7 +25,7 @@ const REF = /^[A-Z]{2,8}-\d{6}-\d{3}$/;
 const LANGS = ["ar", "en", "tr"];
 const DIR = { ar: "rtl", en: "ltr", tr: "ltr" };
 
-const DEV_SECRET = "syriatech-order-url-dev-secret";
+const DEV_SECRET = "smarttech-order-url-dev-secret";
 function orderSecret() {
   const secret = process.env.ORDER_URL_SECRET || process.env.ADMIN_SECRET || "";
   if (secret) return secret;
@@ -36,7 +36,7 @@ const tokenFor = ref => crypto.createHmac("sha256", orderSecret()).update(String
 const sha = value => crypto.createHash("sha256").update(String(value)).digest();
 const sameToken = (a, b) => crypto.timingSafeEqual(sha(a), sha(b));
 
-const SITE_FALLBACK = "https://syriatech-store.vercel.app";
+const SITE_FALLBACK = "https://smarttech-mahmoudbir.vercel.app";
 function trustedOrigin() {
   const host = process.env.SITE_ORIGIN || process.env.VERCEL_PROJECT_PRODUCTION_URL ||
     process.env.VERCEL_URL || SITE_FALLBACK;

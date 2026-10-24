@@ -1,5 +1,5 @@
 /*
- * SYRIATECH — the journeys, and the round trip the shop is for.
+ * SmartTech — the journeys, and the round trip the shop is for.
  * =============================================================
  *
  * `shop-test.mjs` measures the redesign: where the first card sits, how tall
@@ -84,7 +84,7 @@ async function newPage({ lang = "ar", width = 390, height = 844 } = {}) {
   page.on("console", m => { if (m.type() === "error" && !/favicon|401|status of 401/i.test(m.text())) errors.push(m.text().slice(0, 200)); });
   page.on("response", r => { if (r.url().startsWith(BASE) && r.status() >= 400 && r.status() !== 401) bad.push(r.url().replace(BASE, "") + " " + r.status()); });
   page.on("dialog", d => d.accept().catch(() => {}));
-  await page.evaluateOnNewDocument(code => { try { localStorage.setItem("syriatech_lang", code); } catch (e) {} }, lang);
+  await page.evaluateOnNewDocument(code => { try { localStorage.setItem("smarttech_lang", code); } catch (e) {} }, lang);
   page.__lang = lang;
   return { page, errors, bad };
 }
@@ -484,7 +484,7 @@ let ORDER_REF = "";
     ref: (document.body.textContent.match(/SY-\d{6}-\d{3}/) || [""])[0],
     heading: (document.querySelector("h1") || {}).textContent || "",
     whatsapp: document.querySelectorAll('a[href*="wa.me"]').length,
-    cartEmptied: (() => { try { return JSON.parse(localStorage.getItem("syriatech_cart_v2") || "[]").length; } catch (e) { return -1; } })()
+    cartEmptied: (() => { try { return JSON.parse(localStorage.getItem("smarttech_cart_v2") || "[]").length; } catch (e) { return -1; } })()
   }));
   ORDER_REF = confirmation.ref;
   /* SY-YYMMDD-NNN, sequential within the day and minted on the server. The old

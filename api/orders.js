@@ -18,7 +18,7 @@
 import crypto from "crypto";
 import { get, put, BlobPreconditionFailedError } from "@vercel/blob";
 
-const COOKIE = "syriatech_admin";
+const COOKIE = "smarttech_admin";
 const STATE_PATH = "data/store-state.json";
 const OPEN_PATH = "data/orders/open.json";
 const REF = /^[A-Z]{2,8}-\d{6}-\d{3}$/;

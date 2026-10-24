@@ -1,6 +1,6 @@
 # Brand logo sources
 
-Logo files for the brands SYRIATECH is an authorised distributor for.
+Logo files for the brands SmartTech is an authorised distributor for.
 Every file in this folder is hosted in our own repository — nothing is hotlinked
 and no external CDN is loaded at runtime.
 
@@ -141,7 +141,7 @@ Largest file is 10.7 KB, well under the 40 KB limit.
 
 ## Trademark note
 
-These logos are the trademarks of their respective owners. SYRIATECH displays them
+These logos are the trademarks of their respective owners. SmartTech displays them
 as an authorised distributor of these brands, to identify the products it sells.
 They are not modified beyond the colour change explicitly recorded for Nebula above,
 and must not be restyled, recoloured further, stretched or combined with other

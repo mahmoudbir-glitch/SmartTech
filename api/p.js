@@ -40,7 +40,7 @@ let shellHtml = null;
 // one does not, so the constant is the dependable answer. A request's Host
 // header is never consulted: it is attacker-controlled and these pages are
 // cached and served on to other visitors.
-const SITE_FALLBACK = "https://syriatech-store.vercel.app";
+const SITE_FALLBACK = "https://smarttech-mahmoudbir.vercel.app";
 
 function trustedOrigin() {
   const host = process.env.SITE_ORIGIN || process.env.VERCEL_PROJECT_PRODUCTION_URL ||

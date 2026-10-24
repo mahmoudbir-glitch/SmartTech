@@ -2,4 +2,4 @@ User-agent: *
 Allow: /
 Disallow: /api/admin
 
-Sitemap: https://syriatech-store.vercel.app/sitemap.xml
+Sitemap: https://smarttech-mahmoudbir.vercel.app/sitemap.xml

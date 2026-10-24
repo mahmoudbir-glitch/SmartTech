@@ -1,5 +1,5 @@
 /*
- * SYRIATECH — the administration console.
+ * SmartTech — the administration console.
  *
  * Twelve screens in five groups. Orders first, and orders is the landing page
  * after login: that is what the owner opens the console for.
@@ -554,7 +554,7 @@
       : money(order.totals.delivery);
 
     const body =
-      '<div class="print-head"><strong>' + esc(state.settings.storeName || "SYRIATECH") + "</strong> · " +
+      '<div class="print-head"><strong>' + esc(state.settings.storeName || "SmartTech") + "</strong> · " +
         codeOf(state.settings.whatsapp || "") + "<br>" + esc(t("admin.ordPrintTitle")) + " " + codeOf(order.no) +
         " · " + when(order.createdAt, true) + "</div>" +
       '<div class="block no-print"><div class="block__title">' + esc(t("admin.ordStatusHead")) + "</div>" +
@@ -1837,7 +1837,7 @@
         '<label class="switch"><input type="checkbox" id="stPaused"' + (s.paused ? " checked" : "") + ">" + esc(t("admin.setPaused")) + "</label>" +
         '<label class="field"><span>' + esc(t("admin.setPauseMsg")) + '</span><textarea id="stPauseAr">' + esc((s.pauseMessage && s.pauseMessage.ar) || "") + "</textarea></label></div>" +
       '<div class="card"><button type="button" class="btn btn--primary" data-save-settings>' + esc(t("admin.save")) + "</button>" +
-        ' <a class="btn btn--ghost" href="/api/admin?action=export" download="syriatech-export.json">' + esc(t("admin.exportAll")) + "</a></div>";
+        ' <a class="btn btn--ghost" href="/api/admin?action=export" download="smarttech-export.json">' + esc(t("admin.exportAll")) + "</a></div>";
     qs("[data-save-settings]", screen).onclick = async () => {
       const delivery = {};
       qsa("[data-gov]", screen).forEach(input => { delivery[input.dataset.gov] = input.value.trim(); });
@@ -2024,7 +2024,7 @@
     const rail = qs("#rail");
     const narrow = rail.classList.toggle("is-narrow");
     qs("#railToggle").setAttribute("aria-expanded", String(!narrow));
-    try { localStorage.setItem("syriatech_rail", narrow ? "1" : "0"); } catch (e) {}
+    try { localStorage.setItem("smarttech_rail", narrow ? "1" : "0"); } catch (e) {}
   };
 
   /* ---------------------------------------------------------------- boot */
@@ -2041,7 +2041,7 @@
     state.counts = data.counts;
     qs("#loginView").hidden = true;
     qs("#adminView").hidden = false;
-    try { if (localStorage.getItem("syriatech_rail") === "1") qs("#rail").classList.add("is-narrow"); } catch (e) {}
+    try { if (localStorage.getItem("smarttech_rail") === "1") qs("#rail").classList.add("is-narrow"); } catch (e) {}
     await ensureTaxonomy().catch(() => {});
     renderRail();
     // Orders is the landing page after login. That is what he came for.

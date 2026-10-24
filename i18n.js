@@ -824,7 +824,7 @@
     }
   };
 
-  const STORAGE_KEY = "syriatech_lang";
+  const STORAGE_KEY = "smarttech_lang";
   const codes = languages.map(l => l.code);
   const fallback = codes[0];
 

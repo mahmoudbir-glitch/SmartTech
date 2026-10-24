@@ -70,7 +70,7 @@ const money = cents => Math.round(Number(cents || 0)) / 100;
 async function fetchAll() {
   const pages = [];
   for (let page = 1; page <= 20; page++) {
-    const res = await fetch(SOURCE + "?per_page=100&page=" + page, { headers: { "user-agent": "syriatech-catalog-import" } });
+    const res = await fetch(SOURCE + "?per_page=100&page=" + page, { headers: { "user-agent": "smarttech-catalog-import" } });
     if (!res.ok) break;
     const batch = await res.json();
     if (!Array.isArray(batch) || !batch.length) break;

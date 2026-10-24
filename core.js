@@ -125,7 +125,7 @@
 
   /* Every read and write is guarded: private mode, cleared site data and a
      blocked third-party context all throw rather than return null. */
-  const NS = "syriatech_";
+  const NS = "smarttech_";
   const store = {
     get(key, fallback) {
       try {

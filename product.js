@@ -1,5 +1,5 @@
 /*
- * SYRIATECH — the product page.
+ * SmartTech — the product page.
  * =============================
  * `/p/<id>` is where a shared WhatsApp link lands, and it is the only screen in
  * the shop with a revenue event on it. This file renders it into `#productView`

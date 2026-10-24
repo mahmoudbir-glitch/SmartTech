@@ -38,7 +38,7 @@
 import crypto from "crypto";
 import { get, put, list, del, issueSignedToken, presignUrl, parseStoreIdFromDelegationToken, BlobPreconditionFailedError } from "@vercel/blob";
 
-const COOKIE = "syriatech_admin";
+const COOKIE = "smarttech_admin";
 const STATE_PATH = "data/store-state.json";
 const BACKUP_PREFIX = "data/backups/store-state.";
 const DAILY_PREFIX = "data/backups/daily/store-state.";
@@ -313,7 +313,7 @@ async function mutateJson(path, fallback, change) {
 
 /* The bundled files are read from disk. A request's Host header must never
    decide where code is loaded from, so the HTTP fallback uses our own origin. */
-const SITE_FALLBACK = "https://syriatech-store.vercel.app";
+const SITE_FALLBACK = "https://smarttech-mahmoudbir.vercel.app";
 function trustedOrigin() {
   const host = process.env.SITE_ORIGIN || process.env.VERCEL_PROJECT_PRODUCTION_URL ||
     process.env.VERCEL_URL || SITE_FALLBACK;
