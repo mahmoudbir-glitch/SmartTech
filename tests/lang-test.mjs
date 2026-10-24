@@ -133,7 +133,7 @@ SOURCES.forEach(file => {
      Türkçe with Arabic phonetics. And an element marked aria-hidden is
      decoration: a separator dot is not copy. Punctuation that only ever
      separates — · — – / | — is allowed for the same reason. */
-  const exempt = new Set(["العربية", "English", "Türkçe", "SYRIA", "TECH", "S"]);
+  const exempt = new Set(["العربية", "English", "Türkçe", "SYRIA", "TECH", "S", "Smart", "Tech"]);
   const decorative = raw.replace(/<([\w-]+)[^>]*aria-hidden="true"[^>]*>[\s\S]*?<\/>/g, "");
   const leftovers = stripped.split(/<[^>]*>/).map(s => s.trim())
     .filter(s => s && !/^[\s&;#0-9.,:$+/|·—–×−-]*$/.test(s) && !exempt.has(s))
