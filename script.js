@@ -1750,5 +1750,23 @@
     });
   }
 
-  SY.ready(() => { boot(); wireLazySurfaces(); wireSkipToProducts(); });
+  /* "Install the app". Chrome hands over a prompt we can fire from the button;
+     iOS has none, so there the button turns into the Share → Add to Home Screen
+     instruction. Hidden when already running as an installed app. */
+  function wireInstall() {
+    const btn = qs("#installApp");
+    if (!btn || navigator.standalone || (window.matchMedia && matchMedia("(display-mode: standalone)").matches)) return;
+    let offer = null;
+    window.addEventListener("beforeinstallprompt", e => { e.preventDefault(); offer = e; btn.hidden = false; });
+    window.addEventListener("appinstalled", () => { btn.hidden = true; });
+    if (/iphone|ipad|ipod/i.test(navigator.userAgent)) btn.hidden = false;
+    btn.addEventListener("click", () => {
+      if (!offer) { btn.textContent = SY.t("installIosHint"); return; }
+      offer.prompt();
+      offer = null;
+      btn.hidden = true;
+    });
+  }
+
+  SY.ready(() => { boot(); wireLazySurfaces(); wireSkipToProducts(); wireInstall(); });
 })();

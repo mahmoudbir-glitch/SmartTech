@@ -2559,6 +2559,21 @@ footer .container,
 }
 .ftr__lockup .hdr__word { color: var(--n-0); }
 .ftr__admin { color: var(--n-400) !important; }
+.ftr__install {
+  display: inline-flex;
+  align-items: center;
+  min-block-size: 44px;
+  padding: 0;
+  border: 0;
+  background: none;
+  color: var(--brand-tint);
+  font: inherit;
+  font-size: var(--t-200);
+  font-weight: var(--w-medium);
+  text-align: start;
+  cursor: pointer;
+}
+.ftr__install[hidden] { display: none; }
 .ftr__bottom {
   display: flex;
   flex-wrap: wrap;
@@ -3203,6 +3218,7 @@ footer small { color: var(--n-600); }
 footer .hdr__mark { color: var(--brand); }
 .ftr__lockup .hdr__word { color: var(--n-950); }
 .ftr__admin { color: var(--n-500) !important; }
+.ftr__install { color: var(--brand); }
 .ftr__bottom {
   border-block-start: var(--bd-hair);
   color: var(--n-600);
