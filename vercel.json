@@ -38,6 +38,10 @@
       "destination": "/checkout.html"
     },
     {
+      "source": "/privacy",
+      "destination": "/privacy.html"
+    },
+    {
       "source": "/sitemap.xml",
       "destination": "/api/sitemap"
     }
