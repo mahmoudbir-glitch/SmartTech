@@ -1,0 +1,24 @@
+{
+  "name": "سمارت تك | SmartTech",
+  "short_name": "SmartTech",
+  "description": "متجر سمارت تك في أعزاز – حلب: منتجات Anker وsoundcore وeufy الأصلية، جملة ومفرق.",
+  "id": "/",
+  "start_url": "/?source=app",
+  "scope": "/",
+  "display": "standalone",
+  "orientation": "portrait",
+  "lang": "ar",
+  "dir": "rtl",
+  "background_color": "#0B1626",
+  "theme_color": "#0B1626",
+  "categories": ["shopping"],
+  "icons": [
+    { "src": "/assets/icons/icon-192.png", "sizes": "192x192", "type": "image/png", "purpose": "any" },
+    { "src": "/assets/icons/icon-512.png", "sizes": "512x512", "type": "image/png", "purpose": "any" },
+    { "src": "/assets/icons/icon-maskable-512.png", "sizes": "512x512", "type": "image/png", "purpose": "maskable" }
+  ],
+  "shortcuts": [
+    { "name": "كل الأقسام", "short_name": "الأقسام", "url": "/browse?source=shortcut", "icons": [{ "src": "/assets/icons/icon-192.png", "sizes": "192x192", "type": "image/png" }] },
+    { "name": "العروض", "short_name": "العروض", "url": "/?deal=1&source=shortcut", "icons": [{ "src": "/assets/icons/icon-192.png", "sizes": "192x192", "type": "image/png" }] }
+  ]
+}

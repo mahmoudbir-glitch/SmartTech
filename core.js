@@ -933,4 +933,9 @@
   /* `SY.on` is the event subscription; DOM binding is `SY.bind`. Two names for
      two jobs rather than one overloaded one. */
   window.SY.bind = on;
+
+  /* Offline page and cached static assets (see sw.js). Never caches pages or /api. */
+  if ("serviceWorker" in navigator) {
+    window.addEventListener("load", function () { navigator.serviceWorker.register("/sw.js").catch(function () {}); });
+  }
 })();
