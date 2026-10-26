@@ -1,0 +1,8 @@
+timestamp	phase	action	why	result
+2026-10-27T02:09	Phase 0	git clone mahmoudbir-glitch/SmartTech -> C:/Users/M_d/SmartTech	مجلد العمل المفتوح Shamsak مشروع مختلف (طاقة شمسية)؛ لم يُلمس	OK
+2026-10-27T02:09	Phase 0	git config core.autocrlf false + إعادة استخراج الملفات بـ LF	CRLF يغيّر بصمات الملفات وهاش CSP عند البناء (R1)	OK — build صار idempotent
+2026-10-27T02:09	Phase 0	npm install (root + tests)	خط أساس	PASS
+2026-10-27T02:09	Phase 0	npm run build	خط أساس	PASS
+2026-10-27T02:09	Phase 0	npm test (baseline)	خط أساس قبل أي تعديل	7/8 PASS — lang-test يتعطل (puppeteer 23 + Chrome 155)
+2026-10-27T02:09	Phase 0	قرار: تكييف المراحل مع البنية الفعلية (static + Vercel functions + Blob) بدل Next/Prisma	المهمة تمنع إعادة البناء من الصفر وتمنع كسر الميزات	DECIDED
+2026-10-27T02:09	Phase 0	قرار: مناطق التوصيل = المحافظات السورية الـ14 الموجودة، لا Beirut/outside	المتجر سوري (SY- و963 ومحافظات)؛ فرض بيروت يكسر البيانات الحالية	DECIDED
