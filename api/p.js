@@ -479,6 +479,7 @@ export default async function handler(req, res) {
     /* No shippingDetails and no hasMerchantReturnPolicy. Both would have to
        state a delivery cost and a return window the owner has not set, and a
        guessed figure in structured data is a published promise. */
+    /** @type {Record<string, any>} */
     const productLd = {
       "@context": "https://schema.org",
       "@type": "Product",
@@ -495,6 +496,7 @@ export default async function handler(req, res) {
     if (colour) productLd.color = colour;
     if (group && !isLead) productLd.isVariantOf = { "@id": origin + "/p/" + lead.id + "#group" };
 
+    /** @type {Record<string, any>[]} */
     const blocks = [productLd];
     if (group && isLead) {
       blocks.push({
@@ -539,12 +541,12 @@ export default async function handler(req, res) {
       blocks.push({
         "@context": "https://schema.org",
         "@type": "BreadcrumbList",
-        itemListElement: trail.map((c, i) => ({
+        itemListElement: /** @type {Record<string, any>[]} */ (trail.map((c, i) => ({
           "@type": "ListItem",
           position: i + 1,
           name: c.name,
           item: origin + c.url
-        })).concat([{ "@type": "ListItem", position: trail.length + 1, name }])
+        }))).concat([{ "@type": "ListItem", position: trail.length + 1, name }])
       });
     }
 

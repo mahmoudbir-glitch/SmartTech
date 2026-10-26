@@ -24,7 +24,7 @@ const wait = ms => new Promise(r => setTimeout(r, ms));
 
 const browser = await puppeteer.launch({
   executablePath: process.env.CHROME_PATH || "C:/Program Files/Google/Chrome/Application/chrome.exe",
-  headless: "new",
+  headless: true,
   args: ["--no-sandbox", "--disable-dev-shm-usage"]
 });
 

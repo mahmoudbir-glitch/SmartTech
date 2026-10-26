@@ -401,6 +401,7 @@ function fold(value) {
 /* The names in the shop dictionary are defaults the stored taxonomy overrides
    (study 11 §7.1). They are read here rather than in the browser, so the
    console still never downloads the shop's dictionary. */
+/** @type {Record<string, Record<string, string>> | null} */
 let dictLabels = null;
 async function labelsFromDictionary() {
   if (dictLabels) return dictLabels;
@@ -1574,7 +1575,7 @@ export default async function handler(req, res) {
       const { blobs } = await list({ prefix: "products/" });
       const rows = blobs.map(b => ({
         url: "/api/image?pathname=" + encodeURIComponent(b.pathname),
-        pathname: b.pathname, size: b.size || 0
+        pathname: b.pathname, size: b.size || 0, uses: 0
       }));
       rows.forEach(r => { r.uses = used[r.url] || 0; });
       return res.status(200).json({
@@ -1865,6 +1866,7 @@ export default async function handler(req, res) {
       // works when the stored document is unreadable. The revocation stamp is
       // carried across, or every session that was signed out comes back.
       const keepRevoked = Number(revokedBefore || 0);
+      /** @type {any} */
       let restored = { overrides: {}, additions: [], deleted: [], settings: { revokedBefore: keepRevoked } };
       if (action === "restore-backup") {
         const name = String(body.name || "");

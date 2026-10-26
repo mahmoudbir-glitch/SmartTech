@@ -6,3 +6,15 @@ timestamp	phase	action	why	result
 2026-10-27T02:09	Phase 0	npm test (baseline)	خط أساس قبل أي تعديل	7/8 PASS — lang-test يتعطل (puppeteer 23 + Chrome 155)
 2026-10-27T02:09	Phase 0	قرار: تكييف المراحل مع البنية الفعلية (static + Vercel functions + Blob) بدل Next/Prisma	المهمة تمنع إعادة البناء من الصفر وتمنع كسر الميزات	DECIDED
 2026-10-27T02:09	Phase 0	قرار: مناطق التوصيل = المحافظات السورية الـ14 الموجودة، لا Beirut/outside	المتجر سوري (SY- و963 ومحافظات)؛ فرض بيروت يكسر البيانات الحالية	DECIDED
+2026-10-27T02:09	Phase 0	gate: AUDIT.md + branch + initial commit	بوابة Phase 0	PASS
+2026-10-27T02:31	Phase 1	.gitattributes (* text=auto eol=lf)	R1: CRLF على Windows يفسد بصمات الملفات وهاش CSP	OK
+2026-10-27T02:31	Phase 1	puppeteer-core 23.11.1 -> 25.11.0 (tests فقط)	R2: lang-test يتعطل دائماً مع Chrome 155 (Session with given id not found)	OK — lang-test 203 PASS
+2026-10-27T02:31	Phase 1	tests: clickCount -> count, headless:'new' -> true	تغييرات API في puppeteer 22+؛ بدونها 6 فشل في ui-test (السعر يُلصق بدل أن يُستبدل)	OK — ui-test PASS
+2026-10-27T02:31	Phase 1	tests: إزالة المسار الثابت D:/bir/smarttech-store	R3: الاختبار المنفرد لا يعمل على جهاز آخر	OK
+2026-10-27T02:31	Phase 1	إضافة npm run lint (tools/lint.cjs بلا اعتماديات)	لم يكن موجوداً؛ يفحص الصياغة وJSON وعلامات التعارض وCRLF	OK
+2026-10-27T02:31	Phase 1	إضافة npm run typecheck (tsc checkJs على api/*.js) + typescript devDependency	لا TypeScript في المشروع؛ دوال الخادم هي الجزء الذي يمسّ البيانات. 6 أخطاء استدلال أُصلحت بتعليقات JSDoc بلا تغيير سلوك	OK
+2026-10-27T02:31	Phase 1	قرار: typecheck لا يشمل سكربتات المتصفح	سكربتات window عامة بلا modules؛ checkJs عليها ينتج مئات الإنذارات الكاذبة	DECIDED
+2026-10-27T02:31	Phase 1	npm run build	بوابة	PASS
+2026-10-27T02:31	Phase 1	npm run lint	بوابة	PASS
+2026-10-27T02:31	Phase 1	npm run typecheck	بوابة	PASS
+2026-10-27T02:31	Phase 1	npm test (8 suites)	تحقق عدم الانكسار	PASS 8/8

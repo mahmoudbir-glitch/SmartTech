@@ -70,8 +70,12 @@ const suites = [
   "ui-test.mjs",
   "compat-test.mjs"
 ];
+/* `npm run test:only -- ui lang` runs a subset against the same server. */
+const at = process.argv.indexOf("--only");
+const picked = at === -1 ? [] : process.argv.slice(at + 1);
+const chosen = picked.length ? suites.filter(s => picked.some(p => s.startsWith(p))) : suites;
 const results = [];
-for (const suite of suites) {
+for (const suite of chosen) {
   fs.rmSync(BLOB_DIR, { recursive: true, force: true });
   console.log("\n===== " + suite + " =====");
   results.push([suite, await run(suite)]);
