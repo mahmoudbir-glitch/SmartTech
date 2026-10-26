@@ -171,5 +171,19 @@ for (const page of stamper.PAGES) {
   }
 }
 
+/* The security headers every page carries. Dropping one is silent: nothing
+   breaks, the shop is just easier to frame, sniff or downgrade. */
+{
+  const catchAll = (config.headers || []).find(h => h.source === "/(.*)");
+  const sent = new Map(((catchAll && catchAll.headers) || []).map(h => [h.key.toLowerCase(), h.value]));
+  for (const key of ["content-security-policy", "strict-transport-security", "x-frame-options", "x-content-type-options", "referrer-policy", "permissions-policy"]) {
+    check("every page sends " + key, !!sent.get(key), [...sent.keys()]);
+  }
+  const hsts = /max-age=(\d+)/.exec(sent.get("strict-transport-security") || "");
+  check("HSTS lasts at least a year", !!hsts && Number(hsts[1]) >= 31536000, sent.get("strict-transport-security"));
+  const csp = sent.get("content-security-policy") || "";
+  check("the CSP refuses plugins and foreign framing", csp.includes("object-src 'none'") && csp.includes("frame-ancestors 'self'"), csp);
+}
+
 console.log(failures ? "\n" + failures + " configuration problem(s)" : "\nDeployment configuration is sound");
 process.exit(failures ? 1 : 0);

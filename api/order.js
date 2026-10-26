@@ -24,6 +24,7 @@
  */
 import crypto from "crypto";
 import { get, put, BlobPreconditionFailedError } from "@vercel/blob";
+import { text as cleanText } from "../lib/shop.mjs";
 
 const V = 1;
 const STATE_PATH = "data/store-state.json";
@@ -207,7 +208,8 @@ async function snapshotNames(product) {
 
 /* -------------------------------------------------------------- cleaning */
 
-const text = (value, max) => String(value == null ? "" : value).trim().slice(0, max);
+/* Trims, caps, and drops control and bidi-override characters — see lib/shop.mjs. */
+const text = cleanText;
 
 /* Accepts 09XXXXXXXX, 9XXXXXXXX, +9639XXXXXXXX, 009639XXXXXXXX, and any 8–15
    digits behind a leading + so a Turkish customer is not locked out. */

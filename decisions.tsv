@@ -18,3 +18,15 @@ timestamp	phase	action	why	result
 2026-10-27T02:31	Phase 1	npm run lint	بوابة	PASS
 2026-10-27T02:31	Phase 1	npm run typecheck	بوابة	PASS
 2026-10-27T02:31	Phase 1	npm test (8 suites)	تحقق عدم الانكسار	PASS 8/8
+2026-10-27T02:43	Phase 2	.env.example (7 متغيرات يقرؤها الكود فعلاً، بلا قيم) + استثناؤه من .gitignore	لم يكن موجوداً؛ .env* كان يتجاهله	OK
+2026-10-27T02:43	Phase 2	vercel.json: Strict-Transport-Security max-age=63072000 + Permissions-Policy	HSTS غير صريح؛ بلا includeSubDomains/preload لأنها التزام على نطاقات فرعية لنطاق خاص مستقبلي	OK
+2026-10-27T02:43	Phase 2	config-test: 8 فحوص جديدة للترويسات الأمنية	حذف ترويسة لا يكسر شيئاً ظاهراً، فيجب أن يكسر اختباراً	PASS
+2026-10-27T02:43	Phase 2	lib/shop.mjs text(): حذف محارف التحكم وbidi override في POST /api/order	المسار الوحيد بلا مصادقة؛ U+202E في الاسم يقلب العرض في لوحة الأدمن	OK
+2026-10-27T02:43	Phase 2	npm audit fix + overrides zod 4.6.7 (root) / puppeteer-core 25.16.0 (tests)	5 high في root (undici DoS، zod عبر @vercel/cli-config) و3 في tests	0 vulnerabilities
+2026-10-27T02:43	Phase 2	قرار: لا إعادة كتابة المحققات الحالية بـ Zod	api/order.js وapi/admin.js لهما محققات يدوية صارمة (قوائم مسموحة، e164، money، حدود طول) مغطاة بـ api-test؛ استبدالها مخاطرة كسر بلا مكسب أمني. Zod يُستعمل في نقطة التتبع الجديدة (Phase 4)	DECIDED
+2026-10-27T02:43	Phase 2	rate limit: login موجود (state.logins + Retry-After)، checkout موجود (15/ساعة، 6/دقيقة)، track يُضاف في Phase 4	تحقق من المطلوب	OK (2/3 موجودة)
+2026-10-27T02:43	Phase 2	npm run build	بوابة	PASS
+2026-10-27T02:43	Phase 2	npm run lint	بوابة	PASS
+2026-10-27T02:43	Phase 2	npm run typecheck	بوابة	PASS
+2026-10-27T02:43	Phase 2	.env.example exists	بوابة	PASS
+2026-10-27T02:43	Phase 2	npm test (8 suites, full run)	تحقق عدم الانكسار	PASS 8/8

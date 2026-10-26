@@ -10,5 +10,5 @@
     "strict": false,
     "skipLibCheck": true
   },
-  "include": ["api/*.js"]
+  "include": ["api/*.js", "lib/*.mjs"]
 }
