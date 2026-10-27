@@ -1091,11 +1091,14 @@ export default async function handler(req, res) {
     /* Bulk price and bulk stock, with the before-values kept so the toast can
        offer an undo rather than being terrifying. */
     if (req.method === "POST" && action === "bulk") {
+      /* Only a stock change is a stock edit. Status (publish/archive) and
+         category are product edits: they used to fall through to stock.edit,
+         which let a staff account unpublish or re-file the catalogue. The role
+         is checked before the input, so a refusal never depends on the body. */
+      const kind = String(body.kind || "");
+      requireRole(user, kind === "stock" ? "stock.edit" : "products.edit");
       const ids = (Array.isArray(body.ids) ? body.ids : []).map(Number).filter(Boolean).slice(0, 2000);
       if (!ids.length) return fail(res, 400, "invalid_id");
-      const kind = String(body.kind || "");
-      if (kind === "price") requireRole(user, "products.edit");
-      else requireRole(user, "stock.edit");
       const cat = await loadCatalogue();
       const before = [];
       await mutate(s => {

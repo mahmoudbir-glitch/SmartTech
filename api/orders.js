@@ -15,11 +15,9 @@
  * `history` is never rewritten, by anyone, including the owner: it is the only
  * accountability there is once a second person has a login.
  */
-import crypto from "crypto";
 import { get, put, BlobPreconditionFailedError } from "@vercel/blob";
+import { sessionUser, may, audit } from "./admin.js";
 
-const COOKIE = "smarttech_admin";
-const STATE_PATH = "data/store-state.json";
 const OPEN_PATH = "data/orders/open.json";
 const REF = /^[A-Z]{2,8}-\d{6}-\d{3}$/;
 const RETRIES = 3;
@@ -40,43 +38,21 @@ const SETTLED = new Set(["paid", "refunded", "partial_refund"]);
 const fail = (res, status, code, extra) =>
   res.status(status).json(Object.assign({ ok: false, error: code }, extra || {}));
 
-const digest = (key, value) => crypto.createHmac("sha256", key).update(String(value)).digest();
-const safeEqual = (a, b) => crypto.timingSafeEqual(digest("compare", a), digest("compare", b));
-const env = () => ({ password: process.env.ADMIN_PASSWORD || "", secret: process.env.ADMIN_SECRET || "" });
-
-/* The same signature api/admin.js mints, so one cookie opens both. The signing
-   key includes the password: changing it in Vercel logs every session out. */
-function signSession(payload) {
-  const { password, secret } = env();
-  return digest(secret + "|" + digest("pw", password).toString("hex"), payload).toString("base64url");
-}
-
-async function isAuthed(req) {
-  const { password, secret } = env();
-  if (!password || !secret) return false;
-  let revokedBefore = 0;
-  try {
-    const state = await readJson(STATE_PATH, null);
-    revokedBefore = Number((state.value && state.value.settings && state.value.settings.revokedBefore) || 0);
-  } catch (e) { /* a missing state document revokes nothing */ }
-
-  const candidates = String(req.headers.cookie || "").split(";").map(x => x.trim())
-    .filter(x => x.startsWith(COOKIE + "="))
-    .map(x => x.slice(COOKIE.length + 1));
-  for (const value of candidates) {
-    const [payload, signature] = value.split(".");
-    if (!payload || !signature) continue;
-    let ok = false;
-    try { ok = safeEqual(signature, signSession(payload)); } catch (e) { ok = false; }
-    if (!ok) continue;
-    try {
-      const claims = JSON.parse(Buffer.from(payload, "base64url").toString());
-      if (!(claims.exp > Date.now())) continue;
-      if (revokedBefore && Number(claims.iat || 0) <= revokedBefore) continue;
-      return true;
-    } catch (e) { continue; }
-  }
-  return false;
+/* The same session and the same GRANTS as api/admin.js. This file used to
+   verify the cookie itself and stop there, so any signed-in account — an
+   editor who may only touch products — could read every customer's name,
+   phone and address here, and change an order with no audit entry. */
+const PATCH_GRANTS = {
+  status: "orders.status", back: "orders.status", cancelReason: "orders.cancel",
+  note: "orders.note", contacted: "orders.note",
+  payment: "*", delivery: "*", discount: "*", assignedTo: "*"
+};
+function patchPermissions(patch) {
+  const need = new Set();
+  for (const key of Object.keys(patch)) if (PATCH_GRANTS[key]) need.add(PATCH_GRANTS[key]);
+  if (String(patch.status || "") === "cancelled") need.add("orders.cancel");
+  if (!need.size) need.add("orders.status");
+  return [...need];
 }
 
 /* ------------------------------------------------------------------ blobs */
@@ -312,7 +288,8 @@ function applyPatch(order, patch, now) {
 
 export default async function handler(req, res) {
   res.setHeader("Cache-Control", "no-store");
-  if (!(await isAuthed(req))) return fail(res, 401, "unauthorized");
+  const user = await sessionUser(req);
+  if (!user) return fail(res, 401, "unauthorized");
 
   const query = req.query || {};
   /* The ref arrives as ?ref= under the dev server and as the trailing path
@@ -325,6 +302,7 @@ export default async function handler(req, res) {
 
   try {
     if (req.method === "GET") {
+      if (!may(user, "orders.view")) return fail(res, 403, "forbidden");
       if (ref) {
         if (!REF.test(ref)) return fail(res, 400, "invalid_ref");
         const { value } = await readJson(orderPath(ref), null);
@@ -339,6 +317,7 @@ export default async function handler(req, res) {
       let patch = req.body;
       if (typeof patch === "string") { try { patch = JSON.parse(patch || "{}"); } catch (e) { patch = {}; } }
       if (!patch || typeof patch !== "object") patch = {};
+      if (!patchPermissions(patch).every(p => may(user, p))) return fail(res, 403, "forbidden");
 
       const now = Date.now();
       let changed = [];
@@ -355,6 +334,7 @@ export default async function handler(req, res) {
 
       if (changed.length) {
         await syncRow(order).catch(e => console.error("row sync failed for " + ref, e));
+        await audit({ by: user.id, area: "order", target: ref, action: "patch", fields: { changed } });
       }
       return res.status(200).json({ ok: true, order, changed });
     }

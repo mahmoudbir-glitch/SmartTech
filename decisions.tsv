@@ -50,3 +50,12 @@ timestamp	phase	action	why	result
 2026-10-27T03:28	Phase 4	E2E: add to cart -> COD checkout -> order in store (blob) -> admin status -> /track reflects (+ هاتف خطأ، بلا JS، rate limit)	بوابة Phase 4	PASS 5/5
 2026-10-27T03:28	Phase 4	npm run build / lint / typecheck	بوابة	PASS
 2026-10-27T03:28	Phase 4	npm test (9 suites)	عدم الانكسار	PASS 9/9
+2026-10-27T03:45	Phase 5	تحقق: CRUD منتجات/أقسام/علامات، الطلبات (قائمة/فلترة/حالة/ملاحظات)، مناطق التوصيل في الإعدادات، audit log — كلها موجودة	لا إعادة بناء لما يعمل	VERIFIED by admin-rbac.spec
+2026-10-27T03:45	Phase 5	SECURITY FIX: api/orders.js كان يتحقق من وجود جلسة فقط بلا دور	حساب editor (منتجات فقط) قرأ كل الطلبات ببيانات الزبائن (أُثبت: 200 قبل الإصلاح)؛ وPATCH غيّر الطلبات بلا audit. الآن sessionUser + may() من admin.js بنفس GRANTS، وPATCH يُسجَّل في audit	FIXED — 403
+2026-10-27T03:45	Phase 5	SECURITY FIX: POST bulk كان يطلب stock.edit لكل نوع غير price	staff (لديه stock.edit) استطاع أرشفة/إلغاء نشر المنتجات وتغيير أقسامها جماعياً (أُثبت: 200 قبل الإصلاح). الآن products.edit لكل نوع عدا stock، ويُفحص الدور قبل المدخلات	FIXED — 403
+2026-10-27T03:45	Phase 5	قرار: غير المسجَّل يحصل 401 لا 403؛ /admin.html صفحة تسجيل دخول بلا بيانات	401 هو الرد الصحيح لغياب الهوية؛ 403 لمن هويته معروفة ودوره لا يسمح. البيانات كلها خلف /api/admin	DECIDED
+2026-10-27T03:45	Phase 5	tests/e2e/admin-rbac.spec.mjs: UI (دخول/قائمة/فلترة/حالة/ملاحظة/audit) + CRUD + مصفوفة RBAC مستخرجة من الكود (كل action: 401 بلا جلسة، 403 لكل دور لا يملك الصلاحية)	بوابة Phase 5	PASS 5/5
+2026-10-27T03:45	Phase 5	شفافية: ملف admin-rbac فشل 3 تشغيلات أثناء كتابته — selector مكرر، ثم ?id بدل &id، ثم ثغرة bulk الحقيقية	اعتبرتها تطوير اختبار جديد لا تكرار فشل البوابة نفسها (كل سبب مختلف وأُصلح)؛ لم أكتب STUCK.md. إن كان تفسيرك للقاعدة أشد فهذا موضع القرار	NOTE
+2026-10-27T03:45	Phase 5	npm run build / lint / typecheck	بوابة	PASS
+2026-10-27T03:45	Phase 5	npx playwright test (كل الملفات)	بوابة	PASS 10/10
+2026-10-27T03:45	Phase 5	npm test (9 suites)	عدم الانكسار	PASS 9/9
