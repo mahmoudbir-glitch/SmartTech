@@ -92,7 +92,8 @@ const TURKISH = /[ğĞşŞıİçÇöÖüÜ]/;
 const SOURCES = ["admin.html", "core.js", "script.js",
   "product.js", "cart.js", "checkout.js", "admin.js", "catalog.js",
   "api/admin.js", "api/products.js", "api/image.js", "api/c.js",
-  "api/p.js", "api/order.js", "api/o.js", "api/orders.js", "api/sitemap.js"]
+  "api/p.js", "api/order.js", "api/o.js", "api/orders.js", "api/sitemap.js",
+  "api/track.js", "api/robots.js"]
   .filter(f => fs.existsSync(path.join(REPO, f)));
 SOURCES.forEach(file => {
   const src = file.endsWith(".html") ? read(file).replace(/<head>[\s\S]*?<\/head>/, "") : read(file);

@@ -8,3 +8,4 @@ STUCK.md
 decisions.tsv
 .env.example
 tsconfig.json
+playwright.config.mjs

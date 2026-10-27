@@ -508,9 +508,20 @@
 
   function isKnownCategory(id) { return categoryIds.has(String(id)); }
 
+  /* The delivery charge for an order, from the owner's settings — one rule
+     for the checkout's figure and api/order.js's record. Goods at or above
+     «التوصيل مجاني فوق» ship free; otherwise the governorate's price; a
+     governorate with no price is null, «يُتفق عليه», never $0. */
+  function deliveryFee(saved, city, goods) {
+    const s = saved || {};
+    if (Number(s.freeOver) > 0 && Number(goods) >= Number(s.freeOver)) return 0;
+    const fee = (s.deliveryPrices || {})[city];
+    return typeof fee === "number" && fee >= 0 && isFinite(fee) ? fee : null;
+  }
+
   window.STORE = {
     categories, brands, products, settings,
     esc, merge, deletedProducts, mergeSettings, imageFor, fallbackFor,
-    descFor, categoryLabel, brandTagline, isKnownCategory, cleanWhatsapp
+    descFor, categoryLabel, brandTagline, isKnownCategory, cleanWhatsapp, deliveryFee
   };
 })();

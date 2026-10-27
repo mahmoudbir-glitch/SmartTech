@@ -24,7 +24,7 @@
  */
 import crypto from "crypto";
 import { get, put, BlobPreconditionFailedError } from "@vercel/blob";
-import { text as cleanText } from "../lib/shop.mjs";
+import { text as cleanText, e164, phoneKeyOf } from "../lib/shop.mjs";
 
 const V = 1;
 const STATE_PATH = "data/store-state.json";
@@ -211,24 +211,8 @@ async function snapshotNames(product) {
 /* Trims, caps, and drops control and bidi-override characters — see lib/shop.mjs. */
 const text = cleanText;
 
-/* Accepts 09XXXXXXXX, 9XXXXXXXX, +9639XXXXXXXX, 009639XXXXXXXX, and any 8–15
-   digits behind a leading + so a Turkish customer is not locked out. */
-function e164(raw) {
-  let value = String(raw || "").replace(/[\s()\-.\u00a0]/g, "");
-  if (/^00\d+$/.test(value)) value = "+" + value.slice(2);
-  if (/^\+\d+$/.test(value)) {
-    const digits = value.slice(1);
-    return digits.length >= 8 && digits.length <= 15 ? "+" + digits : "";
-  }
-  if (!/^\d+$/.test(value)) return "";
-  if (/^09\d{8}$/.test(value)) return "+963" + value.slice(1);
-  if (/^9\d{8}$/.test(value)) return "+963" + value;
-  if (/^963\d{9}$/.test(value)) return "+" + value;
-  return "";
-}
-
-/* `0949 951 985`, `+963949951985` and `963949951985` must be one customer. */
-const phoneKeyOf = phone => String(phone || "").replace(/\D/g, "");
+/* e164() and phoneKeyOf() live in lib/shop.mjs: /api/track matches a phone
+   by the same rule this endpoint stored it with. */
 
 function cleanCustomer(raw) {
   const c = raw && typeof raw === "object" ? raw : {};
@@ -323,7 +307,7 @@ export default async function handler(req, res) {
     const wanted = Array.isArray(body.lines) ? body.lines.slice(0, MAX_LINES) : [];
     if (!wanted.length) return fail(res, 400, "empty_order");
 
-    const { products, settings } = await liveCatalogue();
+    const { products, settings, store } = await liveCatalogue();
     const byId = new Map(products.map(p => [String(p.id), p]));
 
     const out = [];
@@ -367,6 +351,10 @@ export default async function handler(req, res) {
     if (!lines.length) return fail(res, 400, "empty_order");
 
     const items = Math.round(lines.reduce((sum, l) => sum + l.total, 0) * 100) / 100;
+    /* The owner's table, by the same rule the checkout showed (catalog.js).
+       null stays «يُتفق عليه» and is settled by phone, as before. */
+    const fee = store.STORE.deliveryFee(settings, customer.city, items);
+    const grand = fee === null ? null : Math.round((items + fee) * 100) / 100;
     const now = Date.now();
     const { day, month } = stamps(now);
     const prefix = (text(settings.orderPrefix, 8) || "SY").toUpperCase();
@@ -388,10 +376,11 @@ export default async function handler(req, res) {
       customer,
       lines,
 
-      totals: { items, delivery: null, discount: 0, grand: null, currency: "USD" },
+      totals: { items, delivery: fee, discount: 0, grand, currency: "USD" },
       /* null renders «يُتفق عليه». Zero and unknown are different, and $0.00
-         would promise free delivery the shop has not agreed to. */
-      delivery: { method: "courier", city: customer.city, fee: null, promisedAt: null, note: "" },
+         would promise free delivery the shop has not agreed to — 0 here only
+         ever comes from the owner's own free-delivery threshold. */
+      delivery: { method: "courier", city: customer.city, fee, promisedAt: null, note: "" },
       payment: { method: "cod", state: "unpaid", paid: 0, at: null, ref: "", provider: "" },
 
       notes: [],
@@ -421,7 +410,7 @@ export default async function handler(req, res) {
     return res.status(200).json({
       ok: true, ref: order.no, token: tokenFor(order.no),
       url: "/o/" + order.no + "-" + tokenFor(order.no),
-      goods: order.totals.items, priceDrift: drift
+      goods: order.totals.items, delivery: order.totals.delivery, grand: order.totals.grand, priceDrift: drift
     });
   } catch (e) {
     const code = /^invalid_|^missing_|^empty_/.test((e && e.message) || "") ? e.message : "server_error";

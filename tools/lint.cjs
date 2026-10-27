@@ -24,6 +24,11 @@ const files = execFileSync("git", ["ls-files", "-co", "--exclude-standard"], { c
 const problems = [];
 const TEXT = /\.(js|mjs|cjs|json|html|css|md|txt|svg|webmanifest|tsv)$/i;
 const CONFLICT = /^(<{7}|={7}|>{7})( |$)/m;
+/* Literal bidi embedding/override/isolate controls ("Trojan Source"): code
+   that reads one way and runs another. Write them as \u escapes. Built from
+   char codes so this file never contains one either. */
+const cc = n => String.fromCharCode(n);
+const BIDI = new RegExp("[" + cc(0x202a) + "-" + cc(0x202e) + cc(0x2066) + "-" + cc(0x2069) + "]");
 
 for (const file of files) {
   const full = path.join(ROOT, file);
@@ -31,6 +36,7 @@ for (const file of files) {
   const src = fs.readFileSync(full, "utf8");
   if (src.includes("\r\n")) problems.push(file + ": CRLF line endings");
   if (CONFLICT.test(src)) problems.push(file + ": merge-conflict marker");
+  if (/\.(js|mjs|cjs|html)$/i.test(file) && BIDI.test(src)) problems.push(file + ": literal bidi control character");
   if (/\.json$/i.test(file)) {
     try { JSON.parse(src); } catch (e) { problems.push(file + ": invalid JSON — " + e.message); }
   }

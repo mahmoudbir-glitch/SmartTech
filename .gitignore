@@ -12,3 +12,6 @@ twa/*.aab
 twa/*.apk
 twa/app/
 twa/gradle*
+tests/.blobstore-e2e
+tests/.e2e-results
+playwright-report/

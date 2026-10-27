@@ -43,6 +43,8 @@
   var touched = {};
   var busy = false;
   var whatsapp = "";
+  /* The owner's delivery table and free-delivery threshold, from /api/products. */
+  var shopSettings = {};
   var summaryOpen = false;
   var conflictIds = [];
 
@@ -210,9 +212,15 @@
     var grand = SY.qs("[data-grand]");
     if (value) value.innerHTML = SY.money(sum);
     if (label) label.textContent = city ? SY.t("coDeliveryTo", { city: cityLabel(city) }) : SY.t("coDelivery");
-    /* An expression, not a number. When a delivery table exists this becomes
-       a figure and no template changes. */
-    if (grand) grand.innerHTML = SY.t("coGrandExpr", { sum: SY.money(sum) });
+    /* The owner's table, by the rule api/order.js records (catalog.js). With
+       no price for the governorate it stays an expression, not a number. */
+    var fee = city ? window.STORE.deliveryFee(shopSettings, city, sum) : null;
+    var cell = SY.qs("[data-deliv]");
+    if (cell) {
+      if (fee === null) { cell.setAttribute("data-i18n", "coDeliveryTbd"); cell.textContent = SY.t("coDeliveryTbd"); }
+      else { cell.removeAttribute("data-i18n"); cell.innerHTML = fee === 0 ? SY.esc(SY.t("coDeliveryFree")) : SY.money(fee); }
+    }
+    if (grand) grand.innerHTML = fee === null ? SY.t("coGrandExpr", { sum: SY.money(sum) }) : SY.money(sum + fee);
   }
 
   /* -------------------------------------------------------- the two messages */
@@ -536,6 +544,7 @@
     /* Live prices and live stock, so the 409 is rare rather than routine. */
     fetch("/api/products").then(function (r) { return r.json(); }).then(function (state) {
       whatsapp = (window.STORE.mergeSettings(state) || {}).whatsapp || window.STORE.settings.whatsapp;
+      shopSettings = (state && state.settings) || {};
       SY.setState(state);
       if (!lines().length) return showEmpty();
       renderSummary();

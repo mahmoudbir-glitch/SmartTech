@@ -39,3 +39,14 @@ timestamp	phase	action	why	result
 2026-10-27T03:07	Phase 3	npm run lint	بوابة	PASS
 2026-10-27T03:07	Phase 3	npm run typecheck	بوابة	PASS
 2026-10-27T03:07	Phase 3	npm test (9 suites)	بوابة + عدم الانكسار	PASS 9/9
+2026-10-27T03:28	Phase 4	STORE.deliveryFee في catalog.js: مجاني فوق freeOver، وإلا سعر المحافظة، وإلا null (يُتفق عليه)	الأسعار تُحفظ من الأدمن ولا تُطبَّق؛ دالة واحدة تشترك فيها صفحة الدفع وapi/order.js	OK
+2026-10-27T03:28	Phase 4	api/order.js يسجّل totals.delivery وgrand؛ checkout يعرض الرسوم والإجمالي رقماً	رسوم التوصيل حسب المنطقة — المحافظات السورية لا Beirut/outside (قرار Phase 0)	OK
+2026-10-27T03:28	Phase 4	بطاقة حالة الطلب في /o/ (الخطوات + aria-current)	صفحة الإيصال لم تعرض الحالة إطلاقاً؛ تحديث الأدمن لم يكن يصل للزبون	OK
+2026-10-27T03:28	Phase 4	صفحة /track + POST /api/track (Zod، rate limit لكل عنوان ولكل رقم طلب، رد موحّد للرقم/الهاتف الخطأ، مقارنة ثابتة الزمن، يعمل بلا JS بـ 303)	تتبع عام برقم الطلب + الهاتف؛ يعيد رابط الإيصال الموقَّع فقط ولا يكشف بيانات	OK
+2026-10-27T03:28	Phase 4	e164/phoneKeyOf نُقلتا إلى lib/shop.mjs (نقل حرفي)	track يطابق الهاتف بنفس قاعدة التخزين	OK
+2026-10-27T03:28	Phase 4	lint: منع محارف bidi الحرفية في الكود	كادت تدخل عبر هروب \u فُكّ عند الكتابة	OK
+2026-10-27T03:28	Phase 4	رابط «تتبّع طلبك» في التذييل + 22 مفتاحاً جديداً بثلاث لغات	اكتشاف الصفحة؛ lang-test يفرض التطابق	PASS
+2026-10-27T03:28	Phase 4	@playwright/test 1.64.0 (channel chrome، بلا تنزيل متصفح) + playwright.config.mjs	البوابة تطلب Playwright	OK
+2026-10-27T03:28	Phase 4	E2E: add to cart -> COD checkout -> order in store (blob) -> admin status -> /track reflects (+ هاتف خطأ، بلا JS، rate limit)	بوابة Phase 4	PASS 5/5
+2026-10-27T03:28	Phase 4	npm run build / lint / typecheck	بوابة	PASS
+2026-10-27T03:28	Phase 4	npm test (9 suites)	عدم الانكسار	PASS 9/9
