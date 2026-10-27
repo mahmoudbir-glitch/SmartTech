@@ -1,0 +1,70 @@
+timestamp	phase	action	why	result
+2026-10-27T02:09	Phase 0	git clone mahmoudbir-glitch/SmartTech -> C:/Users/M_d/SmartTech	مجلد العمل المفتوح Shamsak مشروع مختلف (طاقة شمسية)؛ لم يُلمس	OK
+2026-10-27T02:09	Phase 0	git config core.autocrlf false + إعادة استخراج الملفات بـ LF	CRLF يغيّر بصمات الملفات وهاش CSP عند البناء (R1)	OK — build صار idempotent
+2026-10-27T02:09	Phase 0	npm install (root + tests)	خط أساس	PASS
+2026-10-27T02:09	Phase 0	npm run build	خط أساس	PASS
+2026-10-27T02:09	Phase 0	npm test (baseline)	خط أساس قبل أي تعديل	7/8 PASS — lang-test يتعطل (puppeteer 23 + Chrome 155)
+2026-10-27T02:09	Phase 0	قرار: تكييف المراحل مع البنية الفعلية (static + Vercel functions + Blob) بدل Next/Prisma	المهمة تمنع إعادة البناء من الصفر وتمنع كسر الميزات	DECIDED
+2026-10-27T02:09	Phase 0	قرار: مناطق التوصيل = المحافظات السورية الـ14 الموجودة، لا Beirut/outside	المتجر سوري (SY- و963 ومحافظات)؛ فرض بيروت يكسر البيانات الحالية	DECIDED
+2026-10-27T02:09	Phase 0	gate: AUDIT.md + branch + initial commit	بوابة Phase 0	PASS
+2026-10-27T02:31	Phase 1	.gitattributes (* text=auto eol=lf)	R1: CRLF على Windows يفسد بصمات الملفات وهاش CSP	OK
+2026-10-27T02:31	Phase 1	puppeteer-core 23.11.1 -> 25.11.0 (tests فقط)	R2: lang-test يتعطل دائماً مع Chrome 155 (Session with given id not found)	OK — lang-test 203 PASS
+2026-10-27T02:31	Phase 1	tests: clickCount -> count, headless:'new' -> true	تغييرات API في puppeteer 22+؛ بدونها 6 فشل في ui-test (السعر يُلصق بدل أن يُستبدل)	OK — ui-test PASS
+2026-10-27T02:31	Phase 1	tests: إزالة المسار الثابت D:/bir/smarttech-store	R3: الاختبار المنفرد لا يعمل على جهاز آخر	OK
+2026-10-27T02:31	Phase 1	إضافة npm run lint (tools/lint.cjs بلا اعتماديات)	لم يكن موجوداً؛ يفحص الصياغة وJSON وعلامات التعارض وCRLF	OK
+2026-10-27T02:31	Phase 1	إضافة npm run typecheck (tsc checkJs على api/*.js) + typescript devDependency	لا TypeScript في المشروع؛ دوال الخادم هي الجزء الذي يمسّ البيانات. 6 أخطاء استدلال أُصلحت بتعليقات JSDoc بلا تغيير سلوك	OK
+2026-10-27T02:31	Phase 1	قرار: typecheck لا يشمل سكربتات المتصفح	سكربتات window عامة بلا modules؛ checkJs عليها ينتج مئات الإنذارات الكاذبة	DECIDED
+2026-10-27T02:31	Phase 1	npm run build	بوابة	PASS
+2026-10-27T02:31	Phase 1	npm run lint	بوابة	PASS
+2026-10-27T02:31	Phase 1	npm run typecheck	بوابة	PASS
+2026-10-27T02:31	Phase 1	npm test (8 suites)	تحقق عدم الانكسار	PASS 8/8
+2026-10-27T02:43	Phase 2	.env.example (7 متغيرات يقرؤها الكود فعلاً، بلا قيم) + استثناؤه من .gitignore	لم يكن موجوداً؛ .env* كان يتجاهله	OK
+2026-10-27T02:43	Phase 2	vercel.json: Strict-Transport-Security max-age=63072000 + Permissions-Policy	HSTS غير صريح؛ بلا includeSubDomains/preload لأنها التزام على نطاقات فرعية لنطاق خاص مستقبلي	OK
+2026-10-27T02:43	Phase 2	config-test: 8 فحوص جديدة للترويسات الأمنية	حذف ترويسة لا يكسر شيئاً ظاهراً، فيجب أن يكسر اختباراً	PASS
+2026-10-27T02:43	Phase 2	lib/shop.mjs text(): حذف محارف التحكم وbidi override في POST /api/order	المسار الوحيد بلا مصادقة؛ U+202E في الاسم يقلب العرض في لوحة الأدمن	OK
+2026-10-27T02:43	Phase 2	npm audit fix + overrides zod 4.6.7 (root) / puppeteer-core 25.16.0 (tests)	5 high في root (undici DoS، zod عبر @vercel/cli-config) و3 في tests	0 vulnerabilities
+2026-10-27T02:43	Phase 2	قرار: لا إعادة كتابة المحققات الحالية بـ Zod	api/order.js وapi/admin.js لهما محققات يدوية صارمة (قوائم مسموحة، e164، money، حدود طول) مغطاة بـ api-test؛ استبدالها مخاطرة كسر بلا مكسب أمني. Zod يُستعمل في نقطة التتبع الجديدة (Phase 4)	DECIDED
+2026-10-27T02:43	Phase 2	rate limit: login موجود (state.logins + Retry-After)، checkout موجود (15/ساعة، 6/دقيقة)، track يُضاف في Phase 4	تحقق من المطلوب	OK (2/3 موجودة)
+2026-10-27T02:43	Phase 2	npm run build	بوابة	PASS
+2026-10-27T02:43	Phase 2	npm run lint	بوابة	PASS
+2026-10-27T02:43	Phase 2	npm run typecheck	بوابة	PASS
+2026-10-27T02:43	Phase 2	.env.example exists	بوابة	PASS
+2026-10-27T02:43	Phase 2	npm test (8 suites, full run)	تحقق عدم الانكسار	PASS 8/8
+2026-10-27T03:07	Phase 3	تحقق: variants (ألوان) + مخزون + معرض صور + منتجات ذات صلة + فلاتر علامة/سعر/توفر + بحث + JSON-LD Product/Breadcrumb/ItemList + sitemap — كلها موجودة	المطلوب كان مبنياً سابقاً؛ لا إعادة بناء	VERIFIED by smoke-test
+2026-10-27T03:07	Phase 3	robots.txt ثابت -> api/robots.js + rewrite	الملف الثابت يكتب نطاق vercel.app بيده فيضل الزحف عند نقل SITE_ORIGIN؛ ولم يمنع /admin.html و/checkout و/o/. الحذف موثّق: الملف استُبدل بنقطة تعطي نفس المحتوى وأكثر	OK
+2026-10-27T03:07	Phase 3	JSON-LD WebSite + SearchAction + Organization في الصفحة الأولى (tools/sync-head.cjs)	الصفحة الأولى بلا بيانات منظَّمة؛ /?q= هو البحث الفعلي في script.js	OK — CSP لم يتغير (data block)
+2026-10-27T03:07	Phase 3	tests/smoke-test.mjs: كل رابط في sitemap (263) يرد 200 + بياناته المنظَّمة؛ 25 صفحة × 3 لغات بلا runtime errors وبالاتجاه الصحيح؛ معرض/ألوان/ذات صلة/نفاد/فلاتر/بحث	بوابة Phase 3 (curl + browser smoke)	PASS
+2026-10-27T03:07	Phase 3	استثناء /privacy من فحص الاتجاه	صفحة قانونية ثنائية (عربي + إنجليزي) لـ Google Play، لا تتبع مبدّل اللغة؛ بلا تركي — مسجَّل كخطر معروف (لا ترجمة آلية لنص قانوني دون مراجعة)	DECIDED
+2026-10-27T03:07	Phase 3	npm run build	بوابة	PASS
+2026-10-27T03:07	Phase 3	npm run lint	بوابة	PASS
+2026-10-27T03:07	Phase 3	npm run typecheck	بوابة	PASS
+2026-10-27T03:07	Phase 3	npm test (9 suites)	بوابة + عدم الانكسار	PASS 9/9
+2026-10-27T03:28	Phase 4	STORE.deliveryFee في catalog.js: مجاني فوق freeOver، وإلا سعر المحافظة، وإلا null (يُتفق عليه)	الأسعار تُحفظ من الأدمن ولا تُطبَّق؛ دالة واحدة تشترك فيها صفحة الدفع وapi/order.js	OK
+2026-10-27T03:28	Phase 4	api/order.js يسجّل totals.delivery وgrand؛ checkout يعرض الرسوم والإجمالي رقماً	رسوم التوصيل حسب المنطقة — المحافظات السورية لا Beirut/outside (قرار Phase 0)	OK
+2026-10-27T03:28	Phase 4	بطاقة حالة الطلب في /o/ (الخطوات + aria-current)	صفحة الإيصال لم تعرض الحالة إطلاقاً؛ تحديث الأدمن لم يكن يصل للزبون	OK
+2026-10-27T03:28	Phase 4	صفحة /track + POST /api/track (Zod، rate limit لكل عنوان ولكل رقم طلب، رد موحّد للرقم/الهاتف الخطأ، مقارنة ثابتة الزمن، يعمل بلا JS بـ 303)	تتبع عام برقم الطلب + الهاتف؛ يعيد رابط الإيصال الموقَّع فقط ولا يكشف بيانات	OK
+2026-10-27T03:28	Phase 4	e164/phoneKeyOf نُقلتا إلى lib/shop.mjs (نقل حرفي)	track يطابق الهاتف بنفس قاعدة التخزين	OK
+2026-10-27T03:28	Phase 4	lint: منع محارف bidi الحرفية في الكود	كادت تدخل عبر هروب \u فُكّ عند الكتابة	OK
+2026-10-27T03:28	Phase 4	رابط «تتبّع طلبك» في التذييل + 22 مفتاحاً جديداً بثلاث لغات	اكتشاف الصفحة؛ lang-test يفرض التطابق	PASS
+2026-10-27T03:28	Phase 4	@playwright/test 1.64.0 (channel chrome، بلا تنزيل متصفح) + playwright.config.mjs	البوابة تطلب Playwright	OK
+2026-10-27T03:28	Phase 4	E2E: add to cart -> COD checkout -> order in store (blob) -> admin status -> /track reflects (+ هاتف خطأ، بلا JS، rate limit)	بوابة Phase 4	PASS 5/5
+2026-10-27T03:28	Phase 4	npm run build / lint / typecheck	بوابة	PASS
+2026-10-27T03:28	Phase 4	npm test (9 suites)	عدم الانكسار	PASS 9/9
+2026-10-27T03:45	Phase 5	تحقق: CRUD منتجات/أقسام/علامات، الطلبات (قائمة/فلترة/حالة/ملاحظات)، مناطق التوصيل في الإعدادات، audit log — كلها موجودة	لا إعادة بناء لما يعمل	VERIFIED by admin-rbac.spec
+2026-10-27T03:45	Phase 5	SECURITY FIX: api/orders.js كان يتحقق من وجود جلسة فقط بلا دور	حساب editor (منتجات فقط) قرأ كل الطلبات ببيانات الزبائن (أُثبت: 200 قبل الإصلاح)؛ وPATCH غيّر الطلبات بلا audit. الآن sessionUser + may() من admin.js بنفس GRANTS، وPATCH يُسجَّل في audit	FIXED — 403
+2026-10-27T03:45	Phase 5	SECURITY FIX: POST bulk كان يطلب stock.edit لكل نوع غير price	staff (لديه stock.edit) استطاع أرشفة/إلغاء نشر المنتجات وتغيير أقسامها جماعياً (أُثبت: 200 قبل الإصلاح). الآن products.edit لكل نوع عدا stock، ويُفحص الدور قبل المدخلات	FIXED — 403
+2026-10-27T03:45	Phase 5	قرار: غير المسجَّل يحصل 401 لا 403؛ /admin.html صفحة تسجيل دخول بلا بيانات	401 هو الرد الصحيح لغياب الهوية؛ 403 لمن هويته معروفة ودوره لا يسمح. البيانات كلها خلف /api/admin	DECIDED
+2026-10-27T03:45	Phase 5	tests/e2e/admin-rbac.spec.mjs: UI (دخول/قائمة/فلترة/حالة/ملاحظة/audit) + CRUD + مصفوفة RBAC مستخرجة من الكود (كل action: 401 بلا جلسة، 403 لكل دور لا يملك الصلاحية)	بوابة Phase 5	PASS 5/5
+2026-10-27T03:45	Phase 5	شفافية: ملف admin-rbac فشل 3 تشغيلات أثناء كتابته — selector مكرر، ثم ?id بدل &id، ثم ثغرة bulk الحقيقية	اعتبرتها تطوير اختبار جديد لا تكرار فشل البوابة نفسها (كل سبب مختلف وأُصلح)؛ لم أكتب STUCK.md. إن كان تفسيرك للقاعدة أشد فهذا موضع القرار	NOTE
+2026-10-27T03:45	Phase 5	npm run build / lint / typecheck	بوابة	PASS
+2026-10-27T03:45	Phase 5	npx playwright test (كل الملفات)	بوابة	PASS 10/10
+2026-10-27T03:45	Phase 5	npm test (9 suites)	عدم الانكسار	PASS 9/9
+2026-10-27T03:59	Phase 6	tests/unit/pricing.test.mjs (18) + npm run test:unit	منطق الأسعار/التوصيل/المخزون/المدخلات بلا خادم	PASS 18/18
+2026-10-27T03:59	Phase 6	E2E يبدأ من البحث: browse -> cart -> COD -> admin -> tracking	المسار الكامل المطلوب	PASS
+2026-10-27T03:59	Phase 6	README: التشغيل، env، البيانات بلا migrations، الاختبارات، النشر؛ DONE.md	توثيق	OK
+2026-10-27T03:59	Phase 6	npm run build	بوابة	PASS
+2026-10-27T03:59	Phase 6	npm run lint	بوابة	PASS
+2026-10-27T03:59	Phase 6	npm run typecheck	بوابة	PASS
+2026-10-27T03:59	Phase 6	npx playwright test	بوابة	PASS 10/10
+2026-10-27T03:59	Phase 6	npm test (9 suites)	عدم الانكسار	PASS 9/9
+2026-10-27T03:59	Phase 6	git push -u origin overnight/upgrade-20261027	remote مضبوط (GitHub)	PUSHED

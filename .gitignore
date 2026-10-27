@@ -2,6 +2,7 @@ node_modules/
 .vercel
 .env
 .env*
+!.env.example
 tests/node_modules
 tests/.blobstore
 tests/.shots
@@ -11,3 +12,6 @@ twa/*.aab
 twa/*.apk
 twa/app/
 twa/gradle*
+tests/.blobstore-e2e
+tests/.e2e-results
+playwright-report/

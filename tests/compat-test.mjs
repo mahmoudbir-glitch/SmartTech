@@ -4,9 +4,10 @@
  */
 import fs from "node:fs";
 import path from "node:path";
+import { fileURLToPath } from "node:url";
 import puppeteer from "puppeteer-core";
 
-const REPO = process.env.DEV_REPO || "D:/bir/smarttech-store";
+const REPO = process.env.DEV_REPO || path.resolve(path.dirname(fileURLToPath(import.meta.url)), "..");
 const BASE = "http://127.0.0.1:" + (process.env.DEV_PORT || 3100);
 const SHOT = process.env.SHOT_DIR;
 let failures = 0;
@@ -48,7 +49,7 @@ check("localStorage access is wrapped in try/catch", !/[^h]\blocalStorage\.(get|
 /* ---------- Screens ---------- */
 const browser = await puppeteer.launch({
   executablePath: process.env.CHROME_PATH || "C:/Program Files/Google/Chrome/Application/chrome.exe",
-  headless: "new",
+  headless: true,
   args: ["--no-sandbox", "--disable-dev-shm-usage"]
 });
 

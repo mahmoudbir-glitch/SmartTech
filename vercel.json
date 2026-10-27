@@ -38,12 +38,20 @@
       "destination": "/checkout.html"
     },
     {
+      "source": "/track",
+      "destination": "/api/track"
+    },
+    {
       "source": "/privacy",
       "destination": "/privacy.html"
     },
     {
       "source": "/sitemap.xml",
       "destination": "/api/sitemap"
+    },
+    {
+      "source": "/robots.txt",
+      "destination": "/api/robots"
     }
   ],
   "headers": [
@@ -117,6 +125,14 @@
         {
           "key": "X-Frame-Options",
           "value": "SAMEORIGIN"
+        },
+        {
+          "key": "Strict-Transport-Security",
+          "value": "max-age=63072000"
+        },
+        {
+          "key": "Permissions-Policy",
+          "value": "camera=(), microphone=(), geolocation=(), payment=(), usb=(), interest-cohort=()"
         },
         {
           "key": "Content-Security-Policy",

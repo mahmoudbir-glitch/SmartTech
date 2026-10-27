@@ -2,3 +2,10 @@ tests
 tools
 .claude
 content
+AUDIT.md
+DONE.md
+STUCK.md
+decisions.tsv
+.env.example
+tsconfig.json
+playwright.config.mjs

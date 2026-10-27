@@ -6,9 +6,10 @@
  */
 import fs from "node:fs";
 import path from "node:path";
+import { fileURLToPath } from "node:url";
 import puppeteer from "puppeteer-core";
 
-const REPO = process.env.DEV_REPO || "D:/bir/smarttech-store";
+const REPO = process.env.DEV_REPO || path.resolve(path.dirname(fileURLToPath(import.meta.url)), "..");
 const BASE = "http://127.0.0.1:" + (process.env.DEV_PORT || 3100);
 let failures = 0;
 const check = (name, ok, detail) => {
@@ -91,7 +92,8 @@ const TURKISH = /[ğĞşŞıİçÇöÖüÜ]/;
 const SOURCES = ["admin.html", "core.js", "script.js",
   "product.js", "cart.js", "checkout.js", "admin.js", "catalog.js",
   "api/admin.js", "api/products.js", "api/image.js", "api/c.js",
-  "api/p.js", "api/order.js", "api/o.js", "api/orders.js", "api/sitemap.js"]
+  "api/p.js", "api/order.js", "api/o.js", "api/orders.js", "api/sitemap.js",
+  "api/track.js", "api/robots.js"]
   .filter(f => fs.existsSync(path.join(REPO, f)));
 SOURCES.forEach(file => {
   const src = file.endsWith(".html") ? read(file).replace(/<head>[\s\S]*?<\/head>/, "") : read(file);
@@ -205,7 +207,7 @@ check("no unused keys in the storefront dictionary", !unused.length, unused);
 /* ---------------- Runtime checks ---------------- */
 const browser = await puppeteer.launch({
   executablePath: process.env.CHROME_PATH || "C:/Program Files/Google/Chrome/Application/chrome.exe",
-  headless: "new",
+  headless: true,
   args: ["--no-sandbox", "--disable-dev-shm-usage"]
 });
 

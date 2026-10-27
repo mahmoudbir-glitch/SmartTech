@@ -46,7 +46,26 @@ const block = [
   '<link rel="alternate" hreflang="ar" href="' + SITE + '/?lang=ar">',
   '<link rel="alternate" hreflang="en" href="' + SITE + '/?lang=en">',
   '<link rel="alternate" hreflang="tr" href="' + SITE + '/?lang=tr">',
-  '<link rel="alternate" hreflang="x-default" href="' + SITE + '/">'
+  '<link rel="alternate" hreflang="x-default" href="' + SITE + '/">',
+  /* The shop as an entity, and the search box script.js already reads from
+     `/?q=`. A data block, not a script: stamp-csp skips it and no hash is
+     needed. `<` is escaped so a name can never close the tag. */
+  '<script type="application/ld+json">' + JSON.stringify([
+    {
+      "@context": "https://schema.org", "@type": "WebSite", "@id": SITE + "/#website",
+      name: ar.brandName, url: SITE + "/", inLanguage: ["ar", "en", "tr"],
+      publisher: { "@id": SITE + "/#org" },
+      potentialAction: {
+        "@type": "SearchAction",
+        target: { "@type": "EntryPoint", urlTemplate: SITE + "/?q={search_term_string}" },
+        "query-input": "required name=search_term_string"
+      }
+    },
+    {
+      "@context": "https://schema.org", "@type": "Organization", "@id": SITE + "/#org",
+      name: ar.brandName, url: SITE + "/", logo: SITE + "/assets/icons/icon-512.png"
+    }
+  ]).replace(/</g, "\\u003c") + '</script>'
 ];
 
 const file = path.join(REPO, "index.html");

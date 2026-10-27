@@ -68,10 +68,15 @@ const suites = [
   "api-test.mjs",
   "shop-test.mjs",     // the redesign's measured claims, in a real browser
   "ui-test.mjs",
-  "compat-test.mjs"
+  "compat-test.mjs",
+  "smoke-test.mjs"     // every published page, every language, plus the storefront features
 ];
+/* `npm run test:only -- ui lang` runs a subset against the same server. */
+const at = process.argv.indexOf("--only");
+const picked = at === -1 ? [] : process.argv.slice(at + 1);
+const chosen = picked.length ? suites.filter(s => picked.some(p => s.startsWith(p))) : suites;
 const results = [];
-for (const suite of suites) {
+for (const suite of chosen) {
   fs.rmSync(BLOB_DIR, { recursive: true, force: true });
   console.log("\n===== " + suite + " =====");
   results.push([suite, await run(suite)]);

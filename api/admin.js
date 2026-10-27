@@ -401,6 +401,7 @@ function fold(value) {
 /* The names in the shop dictionary are defaults the stored taxonomy overrides
    (study 11 §7.1). They are read here rather than in the browser, so the
    console still never downloads the shop's dictionary. */
+/** @type {Record<string, Record<string, string>> | null} */
 let dictLabels = null;
 async function labelsFromDictionary() {
   if (dictLabels) return dictLabels;
@@ -1090,11 +1091,14 @@ export default async function handler(req, res) {
     /* Bulk price and bulk stock, with the before-values kept so the toast can
        offer an undo rather than being terrifying. */
     if (req.method === "POST" && action === "bulk") {
+      /* Only a stock change is a stock edit. Status (publish/archive) and
+         category are product edits: they used to fall through to stock.edit,
+         which let a staff account unpublish or re-file the catalogue. The role
+         is checked before the input, so a refusal never depends on the body. */
+      const kind = String(body.kind || "");
+      requireRole(user, kind === "stock" ? "stock.edit" : "products.edit");
       const ids = (Array.isArray(body.ids) ? body.ids : []).map(Number).filter(Boolean).slice(0, 2000);
       if (!ids.length) return fail(res, 400, "invalid_id");
-      const kind = String(body.kind || "");
-      if (kind === "price") requireRole(user, "products.edit");
-      else requireRole(user, "stock.edit");
       const cat = await loadCatalogue();
       const before = [];
       await mutate(s => {
@@ -1574,7 +1578,7 @@ export default async function handler(req, res) {
       const { blobs } = await list({ prefix: "products/" });
       const rows = blobs.map(b => ({
         url: "/api/image?pathname=" + encodeURIComponent(b.pathname),
-        pathname: b.pathname, size: b.size || 0
+        pathname: b.pathname, size: b.size || 0, uses: 0
       }));
       rows.forEach(r => { r.uses = used[r.url] || 0; });
       return res.status(200).json({
@@ -1865,6 +1869,7 @@ export default async function handler(req, res) {
       // works when the stored document is unreadable. The revocation stamp is
       // carried across, or every session that was signed out comes back.
       const keepRevoked = Number(revokedBefore || 0);
+      /** @type {any} */
       let restored = { overrides: {}, additions: [], deleted: [], settings: { revokedBefore: keepRevoked } };
       if (action === "restore-backup") {
         const name = String(body.name || "");

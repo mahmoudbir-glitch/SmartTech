@@ -1,0 +1,15 @@
+# The build stamps content hashes into the HTML and inline-script hashes into
+# the CSP in vercel.json. Production serves these files with LF endings, so a
+# CRLF checkout (core.autocrlf=true on Windows) makes every hash wrong.
+* text=auto eol=lf
+*.png binary
+*.jpg binary
+*.jpeg binary
+*.webp binary
+*.gif binary
+*.ico binary
+*.woff2 binary
+*.mp4 binary
+*.aab binary
+*.apk binary
+*.keystore binary

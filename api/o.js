@@ -23,6 +23,15 @@ import { get } from "@vercel/blob";
 const STATE_PATH = "data/store-state.json";
 const REF = /^[A-Z]{2,8}-\d{6}-\d{3}$/;
 const LANGS = ["ar", "en", "tr"];
+
+/* The customer's view of the fulfilment chain in api/admin.js. The owner moves
+   an order along it; this page reads the record fresh on every visit, so the
+   step shown is the step he last set. */
+const CHAIN = ["new", "confirmed", "packed", "shipped", "delivered"];
+const STATUS_KEY = {
+  new: "pstNew", confirmed: "pstConfirmed", packed: "pstPacked", shipped: "pstShipped",
+  delivered: "pstDelivered", cancelled: "pstCancelled", returned: "pstReturned"
+};
 const DIR = { ar: "rtl", en: "ltr", tr: "ltr" };
 
 const DEV_SECRET = "smarttech-order-url-dev-secret";
@@ -161,6 +170,16 @@ ol.next li{margin-block-end:8px}
 .btn--wa{background:var(--wa);color:#fff}
 .btn--ghost{background:#fff;border-color:var(--line);color:var(--ink)}
 .keep{margin-block-start:12px;font-size:.8125rem;color:var(--muted)}
+.keep a{color:var(--brand)}
+.steps{list-style:none;display:grid;gap:10px;font-size:.875rem}
+.step{display:flex;align-items:center;gap:10px;color:var(--muted)}
+.step::before{content:"";inline-size:14px;block-size:14px;border-radius:50%;border:2px solid var(--line);flex:none}
+.step.is-done{color:var(--ink)}
+.step.is-done::before{background:#1b6738;border-color:#1b6738}
+.step[aria-current]{font-weight:700}
+.step[aria-current]::before{box-shadow:0 0 0 4px #e7f7eb}
+.state{font-weight:700}
+.state--stop{color:#A4283A}
 .vh{position:absolute;width:1px;height:1px;overflow:hidden;clip-path:inset(50%);white-space:nowrap}
 a:focus-visible,button:focus-visible{outline:3px solid #0B1626;outline-offset:2px;box-shadow:0 0 0 5px #fff}
 @media print{body{background:#fff}.acts,.copy{display:none}.card{border:0;padding:0;margin-block-end:12px}}
@@ -270,6 +289,17 @@ export default async function handler(req, res) {
 
   const feeKnown = order.delivery && order.delivery.fee != null;
 
+  const status = STATUS_KEY[order.status] ? order.status : "new";
+  const pickup = order.delivery && order.delivery.method === "pickup";
+  const label = st => say(st === "shipped" && pickup ? "pstReady" : STATUS_KEY[st]);
+  const at = CHAIN.indexOf(status);
+  const tracker = at === -1
+    ? '<p class="state state--stop" role="status">' + esc(label(status)) + "</p>"
+    : '<ol class="steps">' + CHAIN.map((st, i) =>
+        '<li class="step' + (i <= at ? " is-done" : "") + '"' +
+        (i === at ? ' aria-current="step"><span class="vh">' + esc(say("pstCurrent")) + ": </span>" : ">") +
+        esc(label(st)) + "</li>").join("") + "</ol>";
+
   const body =
     '<div class="card">' +
       '<div class="tick" aria-hidden="true">✓</div>' +
@@ -278,6 +308,10 @@ export default async function handler(req, res) {
         '<span class="refv" dir="ltr">' + esc(order.no) + "</span>" +
         '<button type="button" class="copy" data-copy="' + esc(order.no) + '" data-done="' + esc(say("ocCopied")) +
           '" aria-label="' + esc(say("ocCopyRef")) + '">⧉</button></p>' +
+    "</div>" +
+
+    '<div class="card" data-status="' + esc(status) + '">' +
+      "<h2>" + esc(say("ocStatus")) + "</h2>" + tracker +
     "</div>" +
 
     '<div class="card">' +
@@ -314,7 +348,7 @@ export default async function handler(req, res) {
       '<button type="button" class="btn btn--ghost" data-copy="' + esc(url) + '" data-done="' +
         esc(say("ocCopied")) + '">' + esc(say("ocCopy")) + "</button>" +
     "</div>" +
-    '<p class="keep">' + esc(say("ocKeep")) + "</p>";
+    '<p class="keep">' + esc(say("ocKeep")) + ' · <a href="/track?lang=' + code + '">' + esc(say("ocTrackOther")) + "</a></p>";
 
   return res.status(200).end(shell(code, esc(say("ocTitle")) + " " + esc(order.no), body));
 }
@@ -333,3 +367,6 @@ function shell(code, title, body) {
     '<script src="/api/o?asset=js" defer></script>' +
     "</body></html>";
 }
+
+/* Shared with api/track.js, which hands a matched customer this same page. */
+export { loadText, tokenFor, esc, CSS };

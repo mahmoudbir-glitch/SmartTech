@@ -66,7 +66,7 @@ const OUT_AND_CUT = { id: 5979, query: "PowerPort PD" };
 
 const browser = await puppeteer.launch({
   executablePath: process.env.CHROME_PATH || "C:/Program Files/Google/Chrome/Application/chrome.exe",
-  headless: "new",
+  headless: true,
   args: ["--no-sandbox", "--disable-dev-shm-usage"]
 });
 
@@ -981,7 +981,7 @@ const { page: admin, errors: adminErrors } = await adminPage();
     editor.open && editor.name.includes("GaNPrime") && Number(editor.price) > 0, editor);
   await shot(admin, "admin-02-editor");
 
-  await admin.click("#edPrice", { clickCount: 3 });
+  await admin.click("#edPrice", { count: 3 });
   await admin.type("#edPrice", "64.50", { delay: 10 });
   await adminSaveProduct(admin);
   const afterSave = await adminFind(admin, SUBJECT.name);
@@ -1102,7 +1102,7 @@ let addedId = 0;
   await wait(400);
   await admin.type("#edName", ADDED.name, { delay: 10 });
   await admin.type("#edBrand", ADDED.brand, { delay: 10 });
-  await admin.click("#edPrice", { clickCount: 3 });
+  await admin.click("#edPrice", { count: 3 });
   await admin.type("#edPrice", ADDED.price, { delay: 10 });
   await admin.select("#edStatus", "published");
   await admin.select("#edCat", await admin.evaluate(() => document.querySelector("#edCat option").value));
@@ -1295,7 +1295,7 @@ let addedId = 0;
 
   /* The delivery cost is the first number he types on the phone, and the grand
      total has to follow it. */
-  await admin.click("#ordFee", { clickCount: 3 });
+  await admin.click("#ordFee", { count: 3 });
   await admin.type("#ordFee", "5", { delay: 10 });
   await admin.evaluate(() => document.querySelector("[data-save-order]").click());
   await wait(2500);
@@ -1403,7 +1403,7 @@ let addedId = 0;
   const setPriceThroughEditor = async value => {
     await adminFind(admin, SUBJECT.name);
     await adminOpenProduct(admin, SUBJECT.id);
-    await admin.click("#edPrice", { clickCount: 3 });
+    await admin.click("#edPrice", { count: 3 });
     await admin.type("#edPrice", String(value), { delay: 10 });
     await adminSaveProduct(admin);
     const rows = await adminFind(admin, SUBJECT.name);
