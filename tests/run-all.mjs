@@ -68,7 +68,8 @@ const suites = [
   "api-test.mjs",
   "shop-test.mjs",     // the redesign's measured claims, in a real browser
   "ui-test.mjs",
-  "compat-test.mjs"
+  "compat-test.mjs",
+  "smoke-test.mjs"     // every published page, every language, plus the storefront features
 ];
 /* `npm run test:only -- ui lang` runs a subset against the same server. */
 const at = process.argv.indexOf("--only");

@@ -30,3 +30,12 @@ timestamp	phase	action	why	result
 2026-10-27T02:43	Phase 2	npm run typecheck	بوابة	PASS
 2026-10-27T02:43	Phase 2	.env.example exists	بوابة	PASS
 2026-10-27T02:43	Phase 2	npm test (8 suites, full run)	تحقق عدم الانكسار	PASS 8/8
+2026-10-27T03:07	Phase 3	تحقق: variants (ألوان) + مخزون + معرض صور + منتجات ذات صلة + فلاتر علامة/سعر/توفر + بحث + JSON-LD Product/Breadcrumb/ItemList + sitemap — كلها موجودة	المطلوب كان مبنياً سابقاً؛ لا إعادة بناء	VERIFIED by smoke-test
+2026-10-27T03:07	Phase 3	robots.txt ثابت -> api/robots.js + rewrite	الملف الثابت يكتب نطاق vercel.app بيده فيضل الزحف عند نقل SITE_ORIGIN؛ ولم يمنع /admin.html و/checkout و/o/. الحذف موثّق: الملف استُبدل بنقطة تعطي نفس المحتوى وأكثر	OK
+2026-10-27T03:07	Phase 3	JSON-LD WebSite + SearchAction + Organization في الصفحة الأولى (tools/sync-head.cjs)	الصفحة الأولى بلا بيانات منظَّمة؛ /?q= هو البحث الفعلي في script.js	OK — CSP لم يتغير (data block)
+2026-10-27T03:07	Phase 3	tests/smoke-test.mjs: كل رابط في sitemap (263) يرد 200 + بياناته المنظَّمة؛ 25 صفحة × 3 لغات بلا runtime errors وبالاتجاه الصحيح؛ معرض/ألوان/ذات صلة/نفاد/فلاتر/بحث	بوابة Phase 3 (curl + browser smoke)	PASS
+2026-10-27T03:07	Phase 3	استثناء /privacy من فحص الاتجاه	صفحة قانونية ثنائية (عربي + إنجليزي) لـ Google Play، لا تتبع مبدّل اللغة؛ بلا تركي — مسجَّل كخطر معروف (لا ترجمة آلية لنص قانوني دون مراجعة)	DECIDED
+2026-10-27T03:07	Phase 3	npm run build	بوابة	PASS
+2026-10-27T03:07	Phase 3	npm run lint	بوابة	PASS
+2026-10-27T03:07	Phase 3	npm run typecheck	بوابة	PASS
+2026-10-27T03:07	Phase 3	npm test (9 suites)	بوابة + عدم الانكسار	PASS 9/9
