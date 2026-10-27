@@ -1,7 +1,7 @@
 /*
  * The whole cash-on-delivery path, as a customer and the owner live it:
  *
- *   product page → add to basket → /checkout → order written to the store →
+ *   search → product page → add to basket → /checkout → order written to the store →
  *   receipt → the owner moves the order on → /track by number + phone →
  *   the receipt shows the owner's step.
  */
@@ -25,8 +25,13 @@ test.beforeAll(async ({ request }) => {
   await setDelivery(request, cookie, { "sy-aleppo": 3, "sy-hama": "" }, 1000);
 });
 
-test("add to basket → COD checkout → order in the store", async ({ page }) => {
-  await page.goto("/p/" + PRODUCT + "?lang=en");
+test("browse → add to basket → COD checkout → order in the store", async ({ page }) => {
+  /* Browse: the shop's own search, then the product's card. */
+  await page.goto("/?q=" + encodeURIComponent("Prime Power Bank") + "&lang=en");
+  const card = page.locator('.pcard[data-product="' + PRODUCT + '"] .pcard__hit');
+  await expect(card).toBeVisible();
+  await card.click();
+  await page.waitForURL(new RegExp("/p/" + PRODUCT));
   await page.locator(".pdp__actions [data-add]").first().click();
 
   await page.goto("/checkout?lang=en");

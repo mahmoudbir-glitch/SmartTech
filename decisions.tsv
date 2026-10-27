@@ -59,3 +59,11 @@ timestamp	phase	action	why	result
 2026-10-27T03:45	Phase 5	npm run build / lint / typecheck	بوابة	PASS
 2026-10-27T03:45	Phase 5	npx playwright test (كل الملفات)	بوابة	PASS 10/10
 2026-10-27T03:45	Phase 5	npm test (9 suites)	عدم الانكسار	PASS 9/9
+2026-10-27T03:59	Phase 6	tests/unit/pricing.test.mjs (18) + npm run test:unit	منطق الأسعار/التوصيل/المخزون/المدخلات بلا خادم	PASS 18/18
+2026-10-27T03:59	Phase 6	E2E يبدأ من البحث: browse -> cart -> COD -> admin -> tracking	المسار الكامل المطلوب	PASS
+2026-10-27T03:59	Phase 6	README: التشغيل، env، البيانات بلا migrations، الاختبارات، النشر؛ DONE.md	توثيق	OK
+2026-10-27T03:59	Phase 6	npm run build	بوابة	PASS
+2026-10-27T03:59	Phase 6	npm run lint	بوابة	PASS
+2026-10-27T03:59	Phase 6	npm run typecheck	بوابة	PASS
+2026-10-27T03:59	Phase 6	npx playwright test	بوابة	PASS 10/10
+2026-10-27T03:59	Phase 6	npm test (9 suites)	عدم الانكسار	PASS 9/9
